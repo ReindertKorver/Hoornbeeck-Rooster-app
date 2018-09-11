@@ -4,7 +4,7 @@ description: This is an app that displays a schedule like roosterinfo.nl
 dependencies:
   flutter:
     sdk: flutter
-
+  shared_preferences: ^0.4.2
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
