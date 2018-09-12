@@ -72,10 +72,24 @@
             </list>
           </value>
         </entry>
+        <entry key="date_utils">
+          <value>
+            <list>
+              <option value="$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/date_utils-0.0.2/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="flutter">
           <value>
             <list>
               <option value="D:/Git/flutter/packages/flutter/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="flutter_calendar">
+          <value>
+            <list>
+              <option value="$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/flutter_calendar-0.0.4/lib" />
             </list>
           </value>
         </entry>
@@ -125,6 +139,13 @@
           <value>
             <list>
               <option value="$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/http_parser-3.1.2/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="intl">
+          <value>
+            <list>
+              <option value="$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/intl-0.15.7/lib" />
             </list>
           </value>
         </entry>
@@ -338,6 +359,13 @@
             </list>
           </value>
         </entry>
+        <entry key="tuple">
+          <value>
+            <list>
+              <option value="$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/tuple-1.0.2/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="typed_data">
           <value>
             <list>
@@ -393,12 +421,15 @@
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/crypto-2.0.3/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/csslib-0.14.4/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/cupertino_icons-0.1.2/lib" />
+      <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/date_utils-0.0.2/lib" />
+      <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/flutter_calendar-0.0.4/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/front_end-0.1.0-alpha.12/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/glob-1.1.5/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/html-0.13.3/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/http-0.11.3+16/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/http_multi_server-2.0.4/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/http_parser-3.1.2/lib" />
+      <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/intl-0.15.7/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/io-0.3.2+1/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/js-0.6.1/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/kernel-0.3.0-alpha.12/lib" />
@@ -428,6 +459,7 @@
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/string_scanner-1.0.2/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/term_glyph-1.0.0/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/test-0.12.37/lib" />
+      <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/tuple-1.0.2/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/typed_data-1.1.5/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/utf-0.9.0+4/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/vector_math-2.0.6/lib" />

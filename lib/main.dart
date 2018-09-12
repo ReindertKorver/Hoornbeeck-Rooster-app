@@ -52,9 +52,6 @@ bool firstLoad=true;
      getStartWidget();
      firstLoad=false;
     }
-    return Scaffold(
-      backgroundColor: AppColors.primaryColorDark,
-      body: startWidget
-    );
+    return startWidget;
   }
 }
