@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hoornbeeck_rooster_info_app/BLL/CalendarCodeAPIConnection.dart';
+import 'package:hoornbeeck_rooster_info_app/DAL/CalendarCodeAPIConnection.dart';
 import 'package:hoornbeeck_rooster_info_app/DAL/UserPreferences.dart';
 import 'package:hoornbeeck_rooster_info_app/Resources/AppColors.dart';
 import 'package:hoornbeeck_rooster_info_app/Widgets/ListItem.dart';
@@ -120,12 +120,12 @@ class _SetupWidgetState extends State<SetupWidget> {
               Padding(
                 padding: const EdgeInsets.only(top: 30.0),
                 child: Text(
-                  "Zoek hieronder een klas/groep of docent code",
+                  "Zoek hieronder een klas/groep of docent code",textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.normal,
                       color: Colors.white,
-                      letterSpacing: 1.0),
+                      letterSpacing: 1.0,),
                 ),
               ),
               Form(
@@ -162,11 +162,7 @@ class _SetupWidgetState extends State<SetupWidget> {
                   padding: const EdgeInsets.only(
                       left: 32.0, right: 32.0, top: 8.0, bottom: 0.0),
                   child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25.0),
-                          border: Border.all(width: 2.0, color: Colors.white),
-                          color: AppColors.primaryColor,
-                          shape: BoxShape.rectangle),
+
                       child: Padding(
                         padding: const EdgeInsets.all(1.0),
                         child: Container(

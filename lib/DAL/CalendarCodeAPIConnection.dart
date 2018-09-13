@@ -13,13 +13,13 @@ class CalendarCodeAPIConnection {
 
   Future<dynamic> searchCode(String value) async {
     try {
-      http.Response response =  await http.get(APICredentials.searchCodeUrl + value);
+      http.Response response =  await http.get(APICredentials.searchCodeUrl+ value);
       print(response.body);
      var result = json.decode(response.body);
      print(result);
      return result;
     } catch (Exception) {
-return null;
+return "Er kon geen verbinding worden gemaakt, check je internet verbinding";
     }
   }
 }

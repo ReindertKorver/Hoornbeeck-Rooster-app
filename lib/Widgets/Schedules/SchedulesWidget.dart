@@ -46,7 +46,7 @@ class _SchedulesWidgetState extends State<SchedulesWidget> {
       for (var i = 0; i < listStrings.length; i++) {
         tempList.add(ListTile(
           leading: Icon(Icons.assignment),
-          title: Text(listStrings[i]),
+          title: Text(listStrings[i]??""),
           onTap: () {},
           trailing: IconButton(
               icon: Icon(Icons.delete),
@@ -57,8 +57,8 @@ class _SchedulesWidgetState extends State<SchedulesWidget> {
       }
     } else {
       tempList.add(ListTile(
-        title: Text(listStrings[0]),
-        subtitle: Text(listStrings[1]),
+        title: Text(listStrings[0]??""),
+        subtitle: Text(listStrings[1]??""),
         onTap: () {},
       ));
     }
@@ -66,12 +66,15 @@ class _SchedulesWidgetState extends State<SchedulesWidget> {
       listItems = tempList;
     });
   }
-
+Widget baseWidget=Padding(
+  padding: const EdgeInsets.all(8.0),
+  child:   Center(child: Text("Kies een rooster om te bekijken",textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.bold,color: AppColors.primaryColor),),),
+);
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-
+baseWidget,
         Expanded(
           child: Padding(
             padding:
@@ -88,15 +91,7 @@ class _SchedulesWidgetState extends State<SchedulesWidget> {
             )),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 16.0,right: 16.0),
-          child: FloatingActionButton.extended(label:Text("Nieuw rooster toevoegen",style: TextStyle(color: AppColors.primaryColor),),icon:Icon(Icons.add_circle,color: AppColors.primaryColor,) ,backgroundColor: AppColors.accentColor,onPressed: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SetupWidget()),
-            );
-          },),
-        ),
+
       ],
     );
   }

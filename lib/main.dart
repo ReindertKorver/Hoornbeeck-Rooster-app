@@ -36,7 +36,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Widget startWidget = Container(child: Center(child: CircularProgressIndicator()),);
+  Widget startWidget = Scaffold(body: Container(child: Center(child: CircularProgressIndicator()),));
   getStartWidget()async {
     Widget widget =  await (UserPreferences().isFirstStart())?SetupWidget():MainWidget();
     setState(() {

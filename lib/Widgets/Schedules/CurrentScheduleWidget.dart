@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_calendar/flutter_calendar.dart';
+import 'package:connectivity/connectivity.dart';
+import 'package:hoornbeeck_rooster_info_app/DAL/InternetConnection.dart';
 
 class CurrentScheduleWidget extends StatefulWidget {
   @override
@@ -7,10 +9,16 @@ class CurrentScheduleWidget extends StatefulWidget {
 }
 
 class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
+
   void handleNewDate(date) {
     print(date);
   }
 
+@override
+  void initState() {
+    super.initState();
+
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
