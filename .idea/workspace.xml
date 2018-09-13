@@ -2,19 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31d4706f-39d4-4d5d-9046-e8e64fd035ee" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/DAL/GetWeekScheduleAPIConnection.dart" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/DAL/InternetConnection.dart" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/lib/BLL/DateLogic.dart" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/lib/BLL/LessonsLogic.dart" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/lib/Entities/Dag.dart" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/lib/Entities/Les.dart" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/lib/Entities/Rooster.dart" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/lib/Entities/Uur.dart" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/lib/Widgets/Items/ScheduleItem.dart" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/lib/Widgets/Items/SubjectScheduleItem.dart" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/lib/BLL/CalendarCodeAPIConnection.dart" afterPath="$PROJECT_DIR$/lib/DAL/CalendarCodeAPIConnection.dart" />
+      <change beforePath="$PROJECT_DIR$/lib/DAL/GetWeekScheduleAPIConnection.dart" afterPath="$PROJECT_DIR$/lib/DAL/GetWeekScheduleAPIConnection.dart" />
+      <change beforePath="$PROJECT_DIR$/lib/DAL/UserPreferences.dart" afterPath="$PROJECT_DIR$/lib/DAL/UserPreferences.dart" />
+      <change beforePath="$PROJECT_DIR$/lib/Widgets/ListItem.dart" afterPath="$PROJECT_DIR$/lib/Widgets/Items/ListItem.dart" />
       <change beforePath="$PROJECT_DIR$/lib/Widgets/Main/MainWidget.dart" afterPath="$PROJECT_DIR$/lib/Widgets/Main/MainWidget.dart" />
       <change beforePath="$PROJECT_DIR$/lib/Widgets/Schedules/CurrentScheduleWidget.dart" afterPath="$PROJECT_DIR$/lib/Widgets/Schedules/CurrentScheduleWidget.dart" />
       <change beforePath="$PROJECT_DIR$/lib/Widgets/Schedules/SchedulesWidget.dart" afterPath="$PROJECT_DIR$/lib/Widgets/Schedules/SchedulesWidget.dart" />
       <change beforePath="$PROJECT_DIR$/lib/Widgets/Setup/SetupWidget.dart" afterPath="$PROJECT_DIR$/lib/Widgets/Setup/SetupWidget.dart" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" afterPath="$PROJECT_DIR$/lib/main.dart" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" afterPath="$PROJECT_DIR$/pubspec.lock" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" afterPath="$PROJECT_DIR$/pubspec.yaml" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -29,69 +32,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/main.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="71">
-              <caret line="37" column="46" lean-forward="false" selection-start-line="37" selection-start-column="46" selection-end-line="37" selection-end-column="46" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InternetConnection.dart" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/DAL/InternetConnection.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-              <folding>
-                <element signature="e#0#20#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainWidget.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/Widgets/Main/MainWidget.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="32" column="8" lean-forward="false" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
-              <folding>
-                <element signature="e#0#20#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CurrentScheduleWidget.dart" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CurrentScheduleWidget.dart" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/Widgets/Schedules/CurrentScheduleWidget.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="277">
+              <caret line="103" column="49" lean-forward="true" selection-start-line="103" selection-start-column="49" selection-end-line="103" selection-end-column="49" />
               <folding>
-                <element signature="e#0#39#0" expanded="true" />
+                <element signature="e#0#22#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pubspec.yaml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pubspec.yaml">
+      <file leaf-file-name="liberrors_patch.dart" pinned="false" current-in-tab="false">
+        <entry file="mock:///liberrors_patch.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="12" column="2" lean-forward="false" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
+            <state relative-caret-position="155">
+              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GetWeekScheduleAPIConnection.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/DAL/GetWeekScheduleAPIConnection.dart">
+      <file leaf-file-name="LessonsLogic.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/BLL/LessonsLogic.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="46" lean-forward="false" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
+            <state relative-caret-position="334">
+              <caret line="59" column="6" lean-forward="false" selection-start-line="59" selection-start-column="6" selection-end-line="59" selection-end-column="6" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -99,11 +66,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SchedulesWidget.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/Widgets/Schedules/SchedulesWidget.dart">
+      <file leaf-file-name="DateLogic.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/BLL/DateLogic.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="35">
-              <caret line="70" column="136" lean-forward="false" selection-start-line="70" selection-start-column="136" selection-end-line="70" selection-end-column="136" />
+            <state relative-caret-position="51">
+              <caret line="21" column="28" lean-forward="true" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScheduleItem.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/Widgets/Items/ScheduleItem.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="13" column="59" lean-forward="false" selection-start-line="13" selection-start-column="59" selection-end-line="13" selection-end-column="59" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -111,11 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SetupWidget.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/Widgets/Setup/SetupWidget.dart">
+      <file leaf-file-name="SubjectScheduleItem.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/Widgets/Items/SubjectScheduleItem.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="164" column="0" lean-forward="false" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
+            <state relative-caret-position="19">
+              <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -123,11 +100,43 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CalendarCodeAPIConnection.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/DAL/CalendarCodeAPIConnection.dart">
+      <file leaf-file-name="framework.dart" pinned="false" current-in-tab="false">
+        <entry file="file://D:/Git/flutter/packages/flutter/lib/src/widgets/framework.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="155">
+              <caret line="1097" column="8" lean-forward="false" selection-start-line="1097" selection-start-column="8" selection-end-line="1097" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Rooster.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/Entities/Rooster.dart">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="57">
-              <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+              <caret line="3" column="14" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+              <folding>
+                <element signature="e#0#63#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dag.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/Entities/Dag.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="5" column="14" lean-forward="true" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppColors.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/Resources/AppColors.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="3" column="46" lean-forward="true" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -160,17 +169,26 @@
         <option value="$PROJECT_DIR$/lib/Resources/AppColors.dart" />
         <option value="$PROJECT_DIR$/lib/Widgets/ListItem.dart" />
         <option value="$PROJECT_DIR$/lib/main.dart" />
-        <option value="$PROJECT_DIR$/lib/DAL/UserPreferences.dart" />
         <option value="$PROJECT_DIR$/lib/BLL/CalendarCodeAPIConnection.dart" />
         <option value="$PROJECT_DIR$/lib/Widgets/Setup/SetupWidget.dart" />
         <option value="$PROJECT_DIR$/lib/Widgets/Schedules/SchedulesWidget.dart" />
         <option value="$PROJECT_DIR$/lib/DAL/GetDayScheduleAPIConnection.dart" />
         <option value="$PROJECT_DIR$/lib/DAL/CalendarCodeAPIConnection.dart" />
-        <option value="$PROJECT_DIR$/lib/DAL/GetWeekScheduleAPIConnection.dart" />
         <option value="$PROJECT_DIR$/pubspec.yaml" />
-        <option value="$PROJECT_DIR$/lib/Widgets/Schedules/CurrentScheduleWidget.dart" />
-        <option value="$PROJECT_DIR$/lib/Widgets/Main/MainWidget.dart" />
         <option value="$PROJECT_DIR$/lib/DAL/InternetConnection.dart" />
+        <option value="$PROJECT_DIR$/lib/Widgets/Main/MainWidget.dart" />
+        <option value="$PROJECT_DIR$/lib/DAL/UserPreferences.dart" />
+        <option value="$PROJECT_DIR$/lib/Entities/Uur.dart" />
+        <option value="$PROJECT_DIR$/lib/Entities/Les.dart" />
+        <option value="$PROJECT_DIR$/lib/BLL/DateLogic.dart" />
+        <option value="$PROJECT_DIR$/lib/BLL/Lessons.dart" />
+        <option value="$PROJECT_DIR$/lib/DAL/GetWeekScheduleAPIConnection.dart" />
+        <option value="$PROJECT_DIR$/lib/Entities/Rooster.dart" />
+        <option value="$PROJECT_DIR$/lib/Entities/Dag.dart" />
+        <option value="$PROJECT_DIR$/lib/BLL/LessonsLogic.dart" />
+        <option value="$PROJECT_DIR$/lib/Widgets/Items/SubjectScheduleItem.dart" />
+        <option value="$PROJECT_DIR$/lib/Widgets/Items/ScheduleItem.dart" />
+        <option value="$PROJECT_DIR$/lib/Widgets/Schedules/CurrentScheduleWidget.dart" />
       </list>
     </option>
   </component>
@@ -215,6 +233,12 @@
               <item name="hoornbeeck_rooster_info_app" type="b2602c69:ProjectViewProjectNode" />
               <item name="hoornbeeck_rooster_info_app" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="BLL" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hoornbeeck_rooster_info_app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hoornbeeck_rooster_info_app" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="DAL" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -240,7 +264,7 @@
               <item name="hoornbeeck_rooster_info_app" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="Widgets" type="462c0819:PsiDirectoryNode" />
-              <item name="Main" type="462c0819:PsiDirectoryNode" />
+              <item name="Items" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hoornbeeck_rooster_info_app" type="b2602c69:ProjectViewProjectNode" />
@@ -248,13 +272,6 @@
               <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="Widgets" type="462c0819:PsiDirectoryNode" />
               <item name="Schedules" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hoornbeeck_rooster_info_app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hoornbeeck_rooster_info_app" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="Widgets" type="462c0819:PsiDirectoryNode" />
-              <item name="Setup" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hoornbeeck_rooster_info_app" type="b2602c69:ProjectViewProjectNode" />
@@ -281,6 +298,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Android\Projects\hoornbeeck_rooster_info_app\lib\Widgets\Items" />
       <recent name="D:\Android\Projects\hoornbeeck_rooster_info_app\lib\DAL" />
     </key>
   </component>
@@ -412,7 +430,7 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.43280977" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4364641" sideWeight="0.5127932" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Dart Analysis" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32928178" sideWeight="0.4978678" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Dart Analysis" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.4978678" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.4978678" order="5" side_tool="false" content_ui="tabs" />
@@ -427,7 +445,7 @@
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4364641" sideWeight="0.48720682" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Flutter Inspector" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24307036" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Flutter Inspector" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24307036" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -483,22 +501,22 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/Widgets/Main/MainWidget.dart</url>
-          <line>50</line>
-          <option name="timeStamp" value="39" />
+          <url>file://$PROJECT_DIR$/lib/BLL/LessonsLogic.dart</url>
+          <line>26</line>
+          <option name="timeStamp" value="73" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/Widgets/Main/MainWidget.dart</url>
-          <line>32</line>
-          <option name="timeStamp" value="45" />
+          <url>file://$PROJECT_DIR$/lib/BLL/LessonsLogic.dart</url>
+          <line>43</line>
+          <option name="timeStamp" value="74" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/Widgets/Main/MainWidget.dart</url>
-          <line>38</line>
-          <option name="timeStamp" value="46" />
+          <url>file://$PROJECT_DIR$/lib/Widgets/Schedules/CurrentScheduleWidget.dart</url>
+          <line>90</line>
+          <option name="timeStamp" value="84" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="48" />
+      <option name="time" value="85" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -536,7 +554,7 @@
         <state relative-caret-position="1729">
           <caret line="95" column="65" lean-forward="false" selection-start-line="95" selection-start-column="65" selection-end-line="95" selection-end-column="65" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -556,12 +574,12 @@
         <state relative-caret-position="1862">
           <caret line="103" column="45" lean-forward="false" selection-start-line="103" selection-start-column="45" selection-end-line="103" selection-end-column="45" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Widgets/ListItem.dart">
+    <entry file="file://$PROJECT_DIR$/lib/Widgets/Items/ListItem.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="22" column="16" lean-forward="false" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
@@ -592,7 +610,7 @@
         <state relative-caret-position="1235">
           <caret line="66" column="6" lean-forward="true" selection-start-line="66" selection-start-column="6" selection-end-line="66" selection-end-column="6" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#0#22#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -627,7 +645,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Widgets/ListItem.dart">
+    <entry file="file://$PROJECT_DIR$/lib/Widgets/Items/ListItem.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="22" column="16" lean-forward="false" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
@@ -674,22 +692,14 @@
         <state relative-caret-position="760">
           <caret line="43" column="12" lean-forward="true" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/Entities.dart" />
     <entry file="file://$PROJECT_DIR$/lib/Widgets/f.dart" />
-    <entry file="file://$PROJECT_DIR$/lib/Resources/AppColors.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="41" lean-forward="false" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Widgets/ListItem.dart">
+    <entry file="file://$PROJECT_DIR$/lib/Widgets/Items/ListItem.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="22" column="16" lean-forward="false" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
@@ -707,16 +717,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/DAL/UserPreferences.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="27" column="39" lean-forward="false" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#20#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/Entities/APICredentials.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
@@ -730,35 +730,7 @@
         <state relative-caret-position="209">
           <caret line="164" column="0" lean-forward="false" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Widgets/Schedules/SchedulesWidget.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="70" column="136" lean-forward="false" selection-start-line="70" selection-start-column="136" selection-end-line="70" selection-end-column="136" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/DAL/CalendarCodeAPIConnection.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/DAL/GetWeekScheduleAPIConnection.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="46" lean-forward="false" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -789,32 +761,154 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Widgets/Schedules/CurrentScheduleWidget.dart">
+    <entry file="file://$PROJECT_DIR$/lib/DAL/InternetConnection.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#20#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/DAL/CalendarCodeAPIConnection.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Widgets/Schedules/SchedulesWidget.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="35">
+          <caret line="70" column="136" lean-forward="false" selection-start-line="70" selection-start-column="136" selection-end-line="70" selection-end-column="136" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/DAL/UserPreferences.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="107" column="78" lean-forward="true" selection-start-line="107" selection-start-column="78" selection-end-line="107" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Entities/Les.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Entities/Uur.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="2" lean-forward="false" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Widgets/Main/MainWidget.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1922">
+          <caret line="174" column="25" lean-forward="true" selection-start-line="174" selection-start-column="25" selection-end-line="174" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/DAL/GetWeekScheduleAPIConnection.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Resources/AppColors.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="46" lean-forward="true" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Entities/Dag.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="14" lean-forward="true" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Entities/Rooster.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="14" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Git/flutter/packages/flutter/lib/src/widgets/framework.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <caret line="1097" column="8" lean-forward="false" selection-start-line="1097" selection-start-column="8" selection-end-line="1097" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/BLL/LessonsLogic.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="59" column="6" lean-forward="false" selection-start-line="59" selection-start-column="6" selection-end-line="59" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/BLL/DateLogic.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="21" column="28" lean-forward="true" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Widgets/Items/SubjectScheduleItem.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Widgets/Main/MainWidget.dart">
+    <entry file="file://$PROJECT_DIR$/lib/Widgets/Items/ScheduleItem.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="32" column="8" lean-forward="false" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
+        <state relative-caret-position="247">
+          <caret line="13" column="59" lean-forward="false" selection-start-line="13" selection-start-column="59" selection-end-line="13" selection-end-column="59" />
           <folding>
-            <element signature="e#0#20#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/DAL/InternetConnection.dart">
+    <entry file="file://$PROJECT_DIR$/lib/Widgets/Schedules/CurrentScheduleWidget.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+        <state relative-caret-position="277">
+          <caret line="103" column="49" lean-forward="true" selection-start-line="103" selection-start-column="49" selection-end-line="103" selection-end-column="49" />
           <folding>
-            <element signature="e#0#20#0" expanded="true" />
+            <element signature="e#0#22#0" expanded="true" />
           </folding>
         </state>
       </provider>

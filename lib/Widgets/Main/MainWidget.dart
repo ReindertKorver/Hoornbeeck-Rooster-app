@@ -173,7 +173,10 @@ Widget connectionIcon=Icon(Icons.signal_wifi_4_bar,color: Colors.white,);
           title: Text(title),
           centerTitle: true,
           elevation: 0.0,
-          actions: <Widget>[connectionIcon],
+          actions: <Widget>[Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: connectionIcon,
+          )],
         ),
         drawer: Drawer(
           child: ListView(

@@ -5,7 +5,7 @@ class UserPreferences {
   SharedPreferences sharedPreferences;
   String FIRSTSTART = "FIRSTSTART";
 String CLASSLIST = "CLASSLIST";
-
+  String CURRENTCLASS = "CURRENTCLASS";
   _initializeUserPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
   }
@@ -70,6 +70,42 @@ String CLASSLIST = "CLASSLIST";
     }
     catch(Exception){
       return ["Fout","Er ging iets fout bij het ophalen van de roosters"];
+    }
+  }
+  setCurrentLesson(String code) async{
+    await _initializeUserPreferences();
+    try{
+      List<String> list= sharedPreferences.getStringList(CLASSLIST);
+      if(list!=null)
+      {
+       sharedPreferences.setString(CURRENTCLASS, code);
+       return "$code is ingesteld als standaard rooster";
+      }
+      else{
+       return "Voeg eerst een roostercode toe voordat je een standaard rooster instelt";
+
+      }
+    }
+    catch(Exception){
+      return "Er ging iets fout bij het opslaan van de geselecteerde waarde";
+    }
+  }
+  getCurrentLesson() async{
+    await _initializeUserPreferences();
+    try{
+      String code = sharedPreferences.getString(CURRENTCLASS);
+      if(code!=null&& code.isNotEmpty)
+      {
+        return code;
+      }
+      else{
+        List<String> list= sharedPreferences.getStringList(CLASSLIST);
+        return list[0];
+
+      }
+    }
+    catch(Exception){
+      return "Er ging iets fout bij het ophalen van de standaard roostercode";
     }
   }
 }

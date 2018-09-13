@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hoornbeeck_rooster_info_app/DAL/UserPreferences.dart';
 import 'package:hoornbeeck_rooster_info_app/Resources/AppColors.dart';
-import 'package:hoornbeeck_rooster_info_app/Widgets/ListItem.dart';
+import 'package:hoornbeeck_rooster_info_app/Widgets/Items/ListItem.dart';
 import 'package:hoornbeeck_rooster_info_app/Widgets/Setup/SetupWidget.dart';
 
 class SchedulesWidget extends StatefulWidget {
