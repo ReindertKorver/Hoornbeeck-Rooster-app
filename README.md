@@ -1,6 +1,6 @@
 # Hoornbeeck Rooster App
 
-This is an app that displays a schedule like roosterinfo.nl
+This is an app that displays a schedule like [roosterinfo.nl](http://roosterinfo.nl/)
 
 ## Made with Flutter
 
