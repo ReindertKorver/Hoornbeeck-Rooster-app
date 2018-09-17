@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_calendar/flutter_calendar.dart';
 import 'package:hoornbeeck_rooster_info_app/DAL/InternetConnection.dart';
 import 'package:hoornbeeck_rooster_info_app/Resources/AppColors.dart';
-import 'package:hoornbeeck_rooster_info_app/Widgets/Schedules/CurrentScheduleWidget.dart';
-import 'package:hoornbeeck_rooster_info_app/Widgets/Schedules/SchedulesWidget.dart';
+import 'package:hoornbeeck_rooster_info_app/Widgets/Info.dart';
+import 'package:hoornbeeck_rooster_info_app/Widgets/ScheduleViewerWidget/CurrentScheduleWidget.dart';
+import 'package:hoornbeeck_rooster_info_app/Widgets/ScheduleViewerWidget/SchedulesWidget.dart';
 import 'package:hoornbeeck_rooster_info_app/Widgets/Setup/SetupWidget.dart';
 
 class MainWidget extends StatefulWidget {
@@ -82,14 +82,14 @@ Widget connectionIcon=Icon(Icons.signal_wifi_4_bar,color: Colors.white,);
                 child: FloatingActionButton(
                   child: Icon(
                     Icons.add,
-                    color: AppColors.primaryColor,
+                    color: Colors.white,
                     size: 30.0,
                   ),
                   backgroundColor: AppColors.accentColor,
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SetupWidget()),
+                      MaterialPageRoute(builder: (context) => SetupWidget(isFirstPage: false,)),
                     );
                   },
                 ),
@@ -209,10 +209,10 @@ Widget connectionIcon=Icon(Icons.signal_wifi_4_bar,color: Colors.white,);
                 leading: Icon(Icons.info_outline),
                 title: Text('Info'),
                 onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
-                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Info()),
+                  );
                 },
               ),
             ],

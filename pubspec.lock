@@ -78,25 +78,11 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.2"
-  date_utils:
-    dependency: transitive
-    description:
-      name: date_utils
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.2"
   flutter:
     dependency: "direct main"
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_calendar:
-    dependency: "direct main"
-    description:
-      name: flutter_calendar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.4"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -145,7 +131,7 @@ packages:
     source: hosted
     version: "3.1.2"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       url: "https://pub.dartlang.org"
@@ -256,6 +242,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.1"
+  pull_to_refresh:
+    dependency: "direct main"
+    description:
+      name: pull_to_refresh
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.5"
   quiver:
     dependency: transitive
     description:
@@ -359,13 +352,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.12.37"
-  tuple:
-    dependency: transitive
-    description:
-      name: tuple
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2"
   typed_data:
     dependency: transitive
     description:
@@ -373,6 +359,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.5"
+  url_launcher:
+    dependency: "direct main"
+    description:
+      name: url_launcher
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.3"
   utf:
     dependency: transitive
     description:

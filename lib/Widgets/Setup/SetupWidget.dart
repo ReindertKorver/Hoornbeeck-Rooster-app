@@ -6,11 +6,15 @@ import 'package:hoornbeeck_rooster_info_app/Widgets/Items/ListItem.dart';
 import 'package:hoornbeeck_rooster_info_app/Widgets/Main/MainWidget.dart';
 
 class SetupWidget extends StatefulWidget {
+  SetupWidget({@required this.isFirstPage});
+final bool isFirstPage;
   @override
-  _SetupWidgetState createState() => _SetupWidgetState();
+  _SetupWidgetState createState() => _SetupWidgetState(isFirstPage:isFirstPage );
 }
 
 class _SetupWidgetState extends State<SetupWidget> {
+  _SetupWidgetState({this.isFirstPage});
+  bool isFirstPage;
   String searchValue;
   TextEditingController searchController = TextEditingController();
   FocusNode searchFocus = new FocusNode();
@@ -87,7 +91,10 @@ class _SetupWidgetState extends State<SetupWidget> {
     }
     print("changed");
   }
+goBack(){
+  Navigator.pop(context);
 
+}
   acceptCode() async {
     var result = await UserPreferences().addClass(selectedItem);
     if (result == null) {
@@ -175,12 +182,29 @@ class _SetupWidgetState extends State<SetupWidget> {
                 ),
               ),
               ButtonBar(
+                alignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
+                  (!isFirstPage)?RawMaterialButton(
+                    onPressed: () {
+                      //Todo: add error catching and show the message
+                      goBack();
+                    },
+                    child: Text("Terug"),
+                    fillColor: Colors.white,
+                    textStyle: TextStyle(color: AppColors.primaryColor),
+                    splashColor: AppColors.primaryColor,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25.0)),
+                  ):Container(),
                   Text(selectedItem ?? "Geen geselecteerd"),
                   RawMaterialButton(
                     onPressed: () {
-                      //Todo: add error catching and show the message
-                      acceptCode();
+                      if(selectedItem!=null)
+                        {acceptCode();}
+                        else{
+
+                      }
+
                     },
                     child: Text("Bevestigen"),
                     fillColor: Colors.white,
@@ -188,7 +212,8 @@ class _SetupWidgetState extends State<SetupWidget> {
                     splashColor: AppColors.primaryColor,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25.0)),
-                  ),
+                  )
+
                 ],
               ),
             ],

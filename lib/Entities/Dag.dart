@@ -5,4 +5,5 @@ class Dag{
   String datum;
   String date;
   List<Uur> uren;
+  String roostertekst;
 }

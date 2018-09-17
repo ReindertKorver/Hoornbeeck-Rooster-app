@@ -3,5 +3,6 @@ class Les{
    String vak;
    String docent;
    String lokaal;
+   String groep;
    String extra;
 }

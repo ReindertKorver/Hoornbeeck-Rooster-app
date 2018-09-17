@@ -18,7 +18,8 @@ class LessonsLogic {
           ..vak = les["vak"] ?? ""
           ..docent = les["docent"] ?? ""
           ..lokaal = les["lokaal"] ?? ""
-          ..extra = les["extra"] ?? "";
+          ..extra = les["extra"] ?? ""
+          ..groep=les["groep"]??"";
         lessen.add(newLes);
       }
       return lessen;
@@ -54,6 +55,7 @@ return null;
           ..dag = item["dag"] ?? ""
           ..date = item["date"] ?? ""
           ..datum = item["datum"] ?? ""
+          ..roostertekst=item["roostertekst"]??""
           ..uren = _getUren(item["uren"]) ?? [Uur()]);
       }
       Rooster rooster = Rooster()..dagen=dagen;
