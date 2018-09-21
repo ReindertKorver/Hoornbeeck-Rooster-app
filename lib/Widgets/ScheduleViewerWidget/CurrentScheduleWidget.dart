@@ -1,7 +1,13 @@
+import 'dart:async';
 import 'dart:convert';
 
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:hoornbeeck_rooster_info_app/BLL/LessonsLogic.dart';
+import 'package:hoornbeeck_rooster_info_app/BLL/ScheduleData.dart';
+import 'package:hoornbeeck_rooster_info_app/DAL/GetWeekScheduleAPIConnection.dart';
+import 'package:hoornbeeck_rooster_info_app/DAL/InternetConnection.dart';
+import 'package:hoornbeeck_rooster_info_app/DAL/UserPreferences.dart';
 import 'package:hoornbeeck_rooster_info_app/Entities/Rooster.dart';
 import 'package:hoornbeeck_rooster_info_app/Resources/AppColors.dart';
 import 'package:hoornbeeck_rooster_info_app/Widgets/ScheduleWidget/DayScheduleWidget.dart';
@@ -17,10 +23,13 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
   TabController tabController =
       TabController(length: 10, vsync: AnimatedListState());
   DateTime currentDate = DateTime.now();
+  bool isConnected = true;
+  String errorMessage;
   int week = 0;
   var formatter = new DateFormat("dd-MM-yy");
   Rooster currentSchedule;
   Widget scheduleWidget = CircularProgressIndicator();
+
   List<Widget> dayScheduleWidgets = [
     Center(child: CircularProgressIndicator()),
     Center(child: CircularProgressIndicator()),
@@ -34,32 +43,89 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
     Center(child: CircularProgressIndicator())
   ];
 
+  @override
+  void initState() {
+    super.initState();
+
+    getLessons();
+  }
+
   void handleNewDate(date) {
     print(date);
   }
 
   getLessons() async {
-    Rooster rooster = await LessonsLogic().getLessons();
-    if (mounted) {
-      setState(() {
-        currentSchedule = rooster;
-      });
-      setScheduleDisplayDate(DateTime.now());
-      setScheduleItems();
+    String lesson = await UserPreferences().getCurrentLesson();
+    var result = await ScheduleData().getSchedule(lesson);
+    Rooster rooster;
+    if (result is Rooster) {
+      rooster = result;
+      if (mounted) {
+        setState(() {
+          errorMessage = null;
+        });
+      }
+    }
+    if (rooster != null) {
+      currentSchedule = rooster;
+    } else {
+      var message = result[0] ?? "Er is een fout opgetreden";
+      if (mounted) {
+        setState(() {
+          errorMessage = message;
+        });
+      }
+    }
+    setScheduleDisplayDate(DateTime.now());
+    setScheduleItems();
+  }
+
+  Future timeOut() {
+    return new Future.delayed(const Duration(seconds: 10), () => "10");
+  }
+
+  onTimeOut() {
+    if (errorMessage != null) {
+      Widget widget = Center(
+        child: Text(
+          errorMessage,
+          textAlign: TextAlign.center,
+        ),
+      );
+      if (mounted) {
+        setState(() {
+          dayScheduleWidgets = [
+            widget,
+            widget,
+            widget,
+            widget,
+            widget,
+            widget,
+            widget,
+            widget,
+            widget,
+            widget
+          ];
+        });
+      }
     }
   }
 
   setScheduleItems() {
     if (currentSchedule != null) {
+      List<DayScheduleWidget> dayScheduleWidgetsTemp = List();
+      for (var dag in currentSchedule.dagen) {
+        dayScheduleWidgetsTemp.add(DayScheduleWidget(dag: dag));
+      }
       if (mounted) {
-        List<DayScheduleWidget> dayScheduleWidgetsTemp = List();
-        for (var dag in currentSchedule.dagen) {
-          dayScheduleWidgetsTemp.add(DayScheduleWidget(dag: dag));
-        }
         setState(() {
           dayScheduleWidgets = dayScheduleWidgetsTemp;
         });
       }
+    } else {
+      timeOut().whenComplete(() {
+        onTimeOut();
+      });
     }
   }
 
@@ -69,24 +135,33 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
 
   setTabViewerToDate(DateTime datetime) {
     if (currentSchedule != null) {
+      //loop through the schedule
       for (var i = 0; i < currentSchedule.dagen.length; i++) {
         try {
           var formatter = new DateFormat('dd-MM-yyyy');
+          //get the date param and check if it exists in the current schedule
           DateTime date = formatter.parse(currentSchedule.dagen[i].date);
           if (date.year == datetime.year &&
               date.day == datetime.day &&
               date.month == datetime.month) {
+            //the date param exists so the tabController animates to the tab with that date and sets the currentDate to the date
             tabController.animateTo(i);
-            setState(() {
-              currentDate = date;
-            });
+            if (mounted) {
+              setState(() {
+                currentDate = date;
+              });
+            }
             break;
           } else {
-            var lastdate=  formatter.parse(currentSchedule.dagen[currentSchedule.dagen.length-1].date);
+            //get the last date from the current schedule
+            var lastdate = formatter.parse(
+                currentSchedule.dagen[currentSchedule.dagen.length - 1].date);
+            //if the last date isnt at the same moment as the date param and its before the first date in the schedule then show a SnackBar
             if (!datetime.isAtSameMomentAs(
                     formatter.parse(currentSchedule.dagen[0].date)) &&
                 !datetime
                     .isAfter(formatter.parse(currentSchedule.dagen[0].date))) {
+              //The date param is before the first date in the current schedule
               final snackBar = SnackBar(
                 content: Text(
                     'Geen rooster gevonden misschien ben je vrij of is het rooster niet beschikbaar, ga maar uit van het laatste'),
@@ -99,7 +174,8 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
               );
               Scaffold.of(context).showSnackBar(snackBar);
               break;
-            }else if(datetime.isAfter(lastdate)){
+            } else if (datetime.isAfter(lastdate)) {
+              //if the date is after the lastDate show a SnackBar
               final snackBar = SnackBar(
                 content: Text(
                     'Geen rooster gevonden misschien ben je vrij of is het rooster niet beschikbaar, ga maar uit van het laatste'),
@@ -112,7 +188,7 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
               );
               Scaffold.of(context).showSnackBar(snackBar);
               break;
-            }
+            } else {}
           }
         } catch (Exception) {}
       }
@@ -133,15 +209,6 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    if (mounted) {
-      getLessons();
-      setScheduleItems();
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
@@ -155,8 +222,17 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
                 ),
                 onPressed: () {
                   DateTime tempdate = currentDate;
-                  var date = tempdate.subtract(Duration(days: 1));
-                  setScheduleDisplayDate(date);
+                  //check if date is monday if it is go to friday
+                  int dayInWeek = currentDate.weekday;
+                  DateTime date;
+                  if (dayInWeek == DateTime.monday) {
+                    date = tempdate.subtract(Duration(days: 3));
+                  } else {
+                    date = tempdate.subtract(Duration(days: 1));
+                  }
+                  if (date != null) {
+                    setScheduleDisplayDate(date);
+                  }
                 },
               ),
               Expanded(
@@ -183,8 +259,15 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
                 ),
                 onPressed: () {
                   DateTime tempdate = currentDate;
-                  var date = tempdate.add(Duration(days: 1));
-                  setScheduleDisplayDate(date);
+                  DateTime date;
+                  if (currentDate.weekday == DateTime.friday) {
+                    date = tempdate.add(Duration(days: 3));
+                  } else {
+                    date = tempdate.add(Duration(days: 1));
+                  }
+                  if (date != null) {
+                    setScheduleDisplayDate(date);
+                  }
                 },
               ),
             ],

@@ -24,18 +24,21 @@ class _DayScheduleWidgetState extends State<DayScheduleWidget> {
 
   setCurrentScheduleCode() async {
     var result = await UserPreferences().getCurrentLesson();
-    setState(() {
-      currentScheduleCode = result;
-    });
+    if (mounted) {
+      setState(() {
+        currentScheduleCode = result;
+      });
+    }
   }
+
   launchURL() async {
-     var url = 'http://hoornbeeck.roosterinfo.nl/index.php/?groep='+currentScheduleCode;
+    var url = 'http://hoornbeeck.roosterinfo.nl/index.php/?groep=' +
+        currentScheduleCode;
     if (await canLaunch(url)) {
       await launch(url);
     } else {
       final snackBar = SnackBar(
-        content: Text(
-            'De url kon niet worden geopend in een browser'),
+        content: Text('De url kon niet worden geopend in een browser'),
         action: SnackBarAction(
           label: 'Verbergen',
           onPressed: () {
@@ -46,6 +49,7 @@ class _DayScheduleWidgetState extends State<DayScheduleWidget> {
       Scaffold.of(context).showSnackBar(snackBar);
     }
   }
+
   @override
   void initState() {
     super.initState();
@@ -86,21 +90,32 @@ class _DayScheduleWidgetState extends State<DayScheduleWidget> {
           ],
         ),
         Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.max,
-          children: (hourScheduleWidgets.length > 0)
-              ? hourScheduleWidgets
-              : [Icon(Icons.error_outline),Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(
-                    child: Text(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.max,
+            children: (hourScheduleWidgets.length > 0)
+                ? hourScheduleWidgets
+                : [
+                    Icon(Icons.error_outline),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Center(
+                          child: Text(
                         "Dat is jammer geen rooster, heb je vrij? Waarschijnlijk niet, deze informatie kreeg de app: \n\n" +
-                            (dag.roostertekst ??
-                            "geen informatie")+"\n\n Kijk online voor meer informatie:",textAlign: TextAlign.center,)),
-
-              ),
-          FlatButton( onPressed: (){launchURL();},child: Text("hoornbeeck.roosterinfo.nl",style: TextStyle(color: AppColors.primaryColor),),),]
-        )
+                            (dag.roostertekst ?? "geen informatie") +
+                            "\n\n Kijk online voor meer informatie:",
+                        textAlign: TextAlign.center,
+                      )),
+                    ),
+                    FlatButton(
+                      onPressed: () {
+                        launchURL();
+                      },
+                      child: Text(
+                        "hoornbeeck.roosterinfo.nl",
+                        style: TextStyle(color: AppColors.primaryColor),
+                      ),
+                    ),
+                  ])
       ],
     );
   }

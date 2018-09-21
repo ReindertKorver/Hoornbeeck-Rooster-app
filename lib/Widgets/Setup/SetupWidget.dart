@@ -103,6 +103,23 @@ goBack(){
         MaterialPageRoute(builder: (context) => MainWidget()),
       );
     }
+    else{
+//      Scaffold.of(context).showSnackBar(new SnackBar(
+//        content: new Text(result),
+//        action: SnackBarAction(label: "Verbergen", onPressed: (){}),
+//      ));
+      setState(() {
+        searchResultList =
+        [
+          Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(result),
+              ))
+        ];
+      });
+
+    }
   }
 
   @override
@@ -113,19 +130,9 @@ goBack(){
         child: Center(
           child: Column(
             children: <Widget>[
+
               Padding(
-                padding: const EdgeInsets.only(top: 50.0),
-                child: Text(
-                  "Welkom",
-                  style: TextStyle(
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      letterSpacing: 1.0),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30.0),
+                padding: const EdgeInsets.only(top: 60.0),
                 child: Text(
                   "Zoek hieronder een klas/groep of docent code",textAlign: TextAlign.center,
                   style: TextStyle(

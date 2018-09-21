@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hoornbeeck_rooster_info_app/DAL/UserPreferences.dart';
 import 'package:hoornbeeck_rooster_info_app/Resources/AppColors.dart';
-import 'package:hoornbeeck_rooster_info_app/Widgets/Items/ListItem.dart';
-import 'package:hoornbeeck_rooster_info_app/Widgets/Setup/SetupWidget.dart';
 
 class SchedulesWidget extends StatefulWidget {
   @override
@@ -41,6 +39,7 @@ class _SchedulesWidgetState extends State<SchedulesWidget> {
 
   selectItem(i) async {
     await UserPreferences().setCurrentLesson(listStrings[i]);
+  getItems();
   }
 
   getItems() async {

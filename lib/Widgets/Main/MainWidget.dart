@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
+import 'package:hoornbeeck_rooster_info_app/BLL/ScheduleData.dart';
 import 'package:hoornbeeck_rooster_info_app/DAL/InternetConnection.dart';
 import 'package:hoornbeeck_rooster_info_app/Resources/AppColors.dart';
 import 'package:hoornbeeck_rooster_info_app/Widgets/Info.dart';
@@ -19,28 +20,18 @@ class _MainWidgetState extends State<MainWidget> {
   String title = "Rooster";
   IconData icon = Icons.event;
   int currentIndex = 0;
+  Text latestUpdate = Text((ScheduleData.lastUpdate != null)
+      ? ScheduleData.lastUpdateFormatter.format(ScheduleData.lastUpdate)
+      : "geen");
   List<Widget> screens = [CurrentScheduleWidget(), SchedulesWidget()];
   List<String> screenTitles = ["Rooster", "Roosters"];
   List<IconData> screenIcons = [Icons.event, Icons.event_note];
   StreamSubscription<ConnectivityResult> subscription;
-  bool isConnected=true;
-Widget connectionIcon=Icon(Icons.signal_wifi_4_bar,color: Colors.white,);
-  setConnectionCheckerIcon() async {
-    bool result = await InternetConnection.checkConnection();
-    if(result!=isConnected){
-    if (result) {
-      setState(() {
-        isConnected = result;
-        connectionIcon=Icon(Icons.signal_wifi_4_bar,color: Colors.white,);
-      });
-    }
-    else{
-      setState(() {
-        isConnected = result;
-        connectionIcon=Icon(Icons.signal_wifi_off,color: Colors.red,);
-      });
-    }}
-  }
+  bool isConnected = true;
+  Widget connectionIcon = Icon(
+    Icons.signal_wifi_4_bar,
+    color: Colors.white,
+  );
 
   @override
   void initState() {
@@ -48,13 +39,52 @@ Widget connectionIcon=Icon(Icons.signal_wifi_4_bar,color: Colors.white,);
     subscription = new Connectivity()
         .onConnectivityChanged
         .listen((ConnectivityResult result) {
-      setConnectionCheckerIcon();
+      onConnectionChangeEvent();
     });
-    setState(() {
-      body = screens[0];
-      title = screenTitles[0];
-      icon = screenIcons[0];
-    });
+    onConnectionChangeEvent();
+  }
+
+  onConnectionChangeEvent() async {
+    bool result = await InternetConnection.checkConnection();
+    if (result != isConnected) {
+      if (result) {
+        setState(() {
+          isConnected = result;
+          connectionIcon = Icon(
+            Icons.signal_wifi_4_bar,
+            color: Colors.white,
+          );
+        });
+      } else {
+        setState(() {
+          isConnected = result;
+          connectionIcon = Icon(
+            Icons.signal_wifi_off,
+            color: Colors.red,
+          );
+        });
+      }
+    }
+    if (mounted) {
+      setState(() {
+        body = screens[currentIndex];
+        title = screenTitles[currentIndex];
+        icon = screenIcons[currentIndex];
+      });
+    }
+    if (isConnected) {
+      setState(() {
+        latestUpdate = Text((ScheduleData.lastUpdate != null)
+            ? ScheduleData.lastUpdateFormatter.format(ScheduleData.lastUpdate)
+            : ScheduleData.lastUpdateFormatter.format(DateTime.now()));
+      });
+    } else {
+      setState(() {
+        latestUpdate = Text((ScheduleData.lastUpdate != null)
+            ? ScheduleData.lastUpdateFormatter.format(ScheduleData.lastUpdate)
+            : "geen");
+      });
+    }
   }
 
   @override
@@ -65,35 +95,37 @@ Widget connectionIcon=Icon(Icons.signal_wifi_4_bar,color: Colors.white,);
         title = screenTitles[index];
         icon = screenIcons[index];
         currentIndex = index;
+        latestUpdate = Text((ScheduleData.lastUpdate != null)
+            ? ScheduleData.lastUpdateFormatter.format(ScheduleData.lastUpdate)
+            : "geen");
       });
     }
 
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor: AppColors.primaryColor,
-        primaryColorDark: AppColors.primaryColorDark,
-        accentColor: AppColors.accentColor,
-      ),
-      home: Scaffold(
+    return
+      Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         floatingActionButton: (currentIndex == 1)
             ? Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: FloatingActionButton(
-                  child: Icon(
-                    Icons.add,
-                    color: Colors.white,
-                    size: 30.0,
-                  ),
-                  backgroundColor: AppColors.accentColor,
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SetupWidget(isFirstPage: false,)),
-                    );
-                  },
-                ),
-              )
+          padding: const EdgeInsets.all(8.0),
+          child: FloatingActionButton(
+            child: Icon(
+              Icons.add,
+              color: Colors.white,
+              size: 30.0,
+            ),
+            backgroundColor: AppColors.accentColor,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        SetupWidget(
+                          isFirstPage: false,
+                        )),
+              );
+            },
+          ),
+        )
             : null,
         body: Container(
             color: AppColors.primaryColor,
@@ -109,7 +141,8 @@ Widget connectionIcon=Icon(Icons.signal_wifi_4_bar,color: Colors.white,);
               ),
             )),
         bottomNavigationBar: BottomAppBar(
-            hasNotch: true,
+          shape: CircularNotchedRectangle(),
+
             child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -173,10 +206,12 @@ Widget connectionIcon=Icon(Icons.signal_wifi_4_bar,color: Colors.white,);
           title: Text(title),
           centerTitle: true,
           elevation: 0.0,
-          actions: <Widget>[Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: connectionIcon,
-          )],
+          actions: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(right: 16.0),
+              child: connectionIcon,
+            )
+          ],
         ),
         drawer: Drawer(
           child: ListView(
@@ -194,6 +229,7 @@ Widget connectionIcon=Icon(Icons.signal_wifi_4_bar,color: Colors.white,);
                 title: Text('Rooster'),
                 onTap: () {
                   setScreen(0);
+                  Navigator.pop(context);
                 },
                 selected: (currentIndex == 0) ? true : false,
               ),
@@ -202,6 +238,7 @@ Widget connectionIcon=Icon(Icons.signal_wifi_4_bar,color: Colors.white,);
                 title: Text('Roosters'),
                 onTap: () {
                   setScreen(1);
+                  Navigator.pop(context);
                 },
                 selected: (currentIndex == 1) ? true : false,
               ),
@@ -215,10 +252,23 @@ Widget connectionIcon=Icon(Icons.signal_wifi_4_bar,color: Colors.white,);
                   );
                 },
               ),
+              Divider(),
+              ListTile(
+                leading: Icon(Icons.refresh),
+                title: Text('Laatste rooster update'),
+                subtitle: latestUpdate,
+                onTap: () {
+                  if (isConnected) {
+                    setScreen(0);
+                    Navigator.pop(context);
+                  } else {
+                    Navigator.pop(context);
+                  }
+                },
+              ),
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }

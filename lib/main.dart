@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hoornbeeck_rooster_info_app/DAL/UserPreferences.dart';
 import 'package:hoornbeeck_rooster_info_app/Resources/AppColors.dart';
 import 'package:hoornbeeck_rooster_info_app/Widgets/Main/MainWidget.dart';
 import 'package:hoornbeeck_rooster_info_app/Widgets/Setup/SetupWidget.dart';
+import 'package:hoornbeeck_rooster_info_app/Widgets/StartWidget.dart';
 
 void main() => runApp(new StartPage());
 
@@ -17,13 +20,16 @@ class _StartPageState extends State<StartPage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: AppColors.primaryColor,
-        primaryColorDark: AppColors.primaryColorDark,
-        accentColor: AppColors.accentColor,
-        textTheme:  Theme.of(context).textTheme.apply(
-          bodyColor: Colors.white,
-          displayColor: Colors.white,
-        )
+          primaryColor: AppColors.primaryColor,
+          primaryColorDark: AppColors.primaryColorDark,
+          accentColor: AppColors.accentColor,
+          textTheme: Theme
+              .of(context)
+              .textTheme
+              .apply(
+            bodyColor: Colors.white,
+            displayColor: Colors.white,
+          )
       ),
       home: HomePage(),
     );
@@ -36,23 +42,37 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Widget startWidget = Scaffold(body: Container(child: Center(child: CircularProgressIndicator()),));
-  getStartWidget()async {
-    bool isFirstStart =await UserPreferences().isFirstStart();
-    Widget widget =   (isFirstStart)?SetupWidget(isFirstPage: true,):MainWidget();
+  Widget startWidget = StartWidget();
+  Widget tempWidget = SetupWidget(isFirstPage: true,);
+
+  getStartWidget() async {
+    bool isFirstStart = await UserPreferences().isFirstStart();
+    tempWidget =
+    (isFirstStart) ? SetupWidget(isFirstPage: true,) : MainWidget();
+    waitCompleted();
+  }
+
+  waitCompleted() async {
     setState(() {
-      startWidget = widget;
+      startWidget = tempWidget;
     });
   }
-bool firstLoad=true;
+
+  bool firstLoad = true;
+
   @override
   Widget build(BuildContext context) {
-    if(firstLoad){
-
+    if (firstLoad) {
       print("Load setup");
-     getStartWidget();
-     firstLoad=false;
+      getStartWidget();
+      firstLoad = false;
     }
-    return startWidget;
+    return MaterialApp(theme: ThemeData(
+      primaryColor: AppColors.primaryColor,
+      primaryColorDark: AppColors.primaryColorDark,
+      accentColor: AppColors.accentColor,
+    ),
+        home: startWidget,
+    );
   }
 }

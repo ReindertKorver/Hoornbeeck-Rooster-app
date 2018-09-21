@@ -19,12 +19,11 @@ class LessonsLogic {
           ..docent = les["docent"] ?? ""
           ..lokaal = les["lokaal"] ?? ""
           ..extra = les["extra"] ?? ""
-          ..groep=les["groep"]??"";
+          ..groep = les["groep"] ?? "";
         lessen.add(newLes);
       }
       return lessen;
-    }
-    catch (Exception) {
+    } catch (Exception) {
       return null;
     }
   }
@@ -40,42 +39,39 @@ class LessonsLogic {
         uren.add(newUur);
       }
       return uren;
-    }
-    catch (Exception) {
-return null;
+    } catch (Exception) {
+      return null;
     }
   }
 
   _getRooster(var value) {
-
     try {
-      List<Dag> dagen= List();
+      List<Dag> dagen = List();
       for (var item in value) {
         dagen.add(Dag()
           ..dag = item["dag"] ?? ""
           ..date = item["date"] ?? ""
           ..datum = item["datum"] ?? ""
-          ..roostertekst=item["roostertekst"]??""
+          ..roostertekst = item["roostertekst"] ?? ""
           ..uren = _getUren(item["uren"]) ?? [Uur()]);
       }
-      Rooster rooster = Rooster()..dagen=dagen;
+      Rooster rooster = Rooster()..dagen = dagen;
       return rooster;
-    }
-    catch (Exception) {
-return null;
+    } catch (Exception) {
+      return null;
     }
   }
 
-  Future<Rooster> getLessons() async {
-    //create an empty Rooster object
-
-    //get the current lesson
-    String lesson = await UserPreferences().getCurrentLesson();
-    //get the data from api with the CurrentLesson
-    String result = await GetWeekScheduleAPIConnection().getByCode(lesson);
-    //decode the result to a json Map
-    Map map = json.decode(result);
-    //loop through the map and add it to a object Rooster
-    return _getRooster(map["rooster"]);
+  Future<Rooster> getLessonsFromJsonString(String jsonString) async {
+    try {
+      //decode the result to a json Map
+      String jsonReplaced=jsonString.replaceAll("\\\\", "");
+      Map map = json.decode(jsonReplaced);
+      //loop through the map and add it to a object Rooster
+      return _getRooster(map["rooster"]);
+    } catch (Exception) {
+      print("APP EXCEPTION "+Exception);
+      return null;
+    }
   }
 }

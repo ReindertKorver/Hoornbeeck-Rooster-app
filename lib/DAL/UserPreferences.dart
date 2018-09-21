@@ -1,4 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
+import 'package:hoornbeeck_rooster_info_app/BLL/ScheduleData.dart';
+import 'package:hoornbeeck_rooster_info_app/Entities/Rooster.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserPreferences {
@@ -6,6 +10,7 @@ class UserPreferences {
   String FIRSTSTART = "FIRSTSTART";
   String CLASSLIST = "CLASSLIST";
   String CURRENTCLASS = "CURRENTCLASS";
+  String LOCALSCHEDULES = "LOCALSCHEDULES";
 
   _initializeUserPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
@@ -35,6 +40,11 @@ class UserPreferences {
     try {
       List<String> list = sharedPreferences.getStringList(CLASSLIST);
       if (list != null) {
+        for(var item in list){
+          if(item==classCode){
+            return "Deze code is al eens geselecteerd";
+          }
+        }
         list.add(classCode);
         sharedPreferences.setStringList(CLASSLIST, list);
       } else {
@@ -104,4 +114,99 @@ class UserPreferences {
       return "Er ging iets fout bij het ophalen van de standaard roostercode";
     }
   }
+
+  getLocalSchedule(String value) async {
+    await _initializeUserPreferences();
+    try {
+      List<String> schedules = sharedPreferences.getStringList(LOCALSCHEDULES);
+      if (schedules != null && schedules.isNotEmpty && schedules.length > 0) {
+        for (var item in schedules) {
+          try {
+            dynamic jsonMap = json.decode(item);
+            if (jsonMap[ScheduleData.schedulecodeString] == value) {
+              ScheduleData.lastUpdate = ScheduleData.lastUpdateFormatter
+                  .parse(jsonMap[ScheduleData.lastupdateString]);
+              return jsonMap[ScheduleData.scheduleString];
+            }
+          } catch (Exception) {
+            print(Exception);
+          }
+        }
+
+        return [
+          "Er ging iets fout bij het ophalen van lokale rooster probeer opnieuw waarneer je internetverbinding hebt"
+        ];
+      } else {
+        return [
+          "Er ging iets fout bij het ophalen van lokale rooster probeer opnieuw waarneer je internetverbinding hebt"
+        ];
+      }
+    } catch (Exception) {
+      return [
+        "Er ging iets fout bij het ophalen van lokale rooster probeer opnieuw waarneer je internetverbinding hebt"
+      ];
+    }
+  }
+
+  setLocalSchedule(String jsonMap, String scheduleCode, DateTime date) async {
+    await _initializeUserPreferences();
+    try {
+      List<String> schedules =
+          sharedPreferences.getStringList(LOCALSCHEDULES) ?? List();
+      Map map = {
+        ScheduleData.scheduleString: jsonMap,
+        ScheduleData.schedulecodeString: scheduleCode,
+        ScheduleData.lastupdateString:
+            ScheduleData.lastUpdateFormatter.format(date),
+      };
+      //search for schedule in local data if exists update it
+      OldScheduleResult resultMap = _checkOldSchedule(scheduleCode, date);
+      if (resultMap == null) {
+        schedules.add(json.encode(map));
+      } else {
+        schedules[resultMap.index] = json.encode(map);
+      }
+
+      sharedPreferences.setStringList(LOCALSCHEDULES, schedules);
+
+    } catch (Exception) {
+      return null;
+    }
+  }
+
+  dynamic _checkOldSchedule(String scheduleCode, DateTime scheduleDate) {
+    List<String> localSchedules =
+        sharedPreferences.getStringList(LOCALSCHEDULES);
+    Map finalMap;
+    int mapIndex;
+    if (localSchedules != null &&
+        localSchedules.isNotEmpty &&
+        localSchedules.length > 0) {
+      for (var i = 0; i < localSchedules.length; i++) {
+        try {
+          dynamic jsonMap = json.decode(localSchedules[i]);
+          if (jsonMap[ScheduleData.schedulecodeString] == scheduleCode) {
+            finalMap = jsonMap;
+            mapIndex = i;
+            break;
+          }
+        } catch (Exception) {
+          print(Exception);
+        }
+      }
+      if (finalMap != null&&mapIndex!=null) {
+        OldScheduleResult oldScheduleResult = OldScheduleResult();
+        oldScheduleResult.map=finalMap;
+        oldScheduleResult.index=mapIndex;
+        return oldScheduleResult;
+      } else {
+        return null;
+      }
+    }
+  }
+}
+
+class OldScheduleResult {
+  Map map;
+  int index;
 }
