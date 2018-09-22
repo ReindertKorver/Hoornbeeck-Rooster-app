@@ -188,7 +188,18 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
               );
               Scaffold.of(context).showSnackBar(snackBar);
               break;
-            } else {}
+            } else {
+              DateTime datetimeTemp = datetime;
+              DateTime newDate;
+              if(datetime.weekday==DateTime.saturday){
+                newDate=datetimeTemp.add(Duration(days: 2));
+                setTabViewerToDate(newDate);
+              }else if(datetime.weekday==DateTime.sunday){
+                newDate=datetimeTemp.add(Duration(days: 1));
+                setTabViewerToDate(newDate);
+              }
+
+            }
           }
         } catch (Exception) {}
       }

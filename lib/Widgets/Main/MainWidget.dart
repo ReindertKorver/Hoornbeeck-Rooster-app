@@ -219,9 +219,21 @@ class _MainWidgetState extends State<MainWidget> {
             padding: EdgeInsets.zero,
             children: <Widget>[
               DrawerHeader(
-                child: Text('Drawer Header'),
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(decoration:ShapeDecoration(color: Colors.white,shape: CircleBorder(side: BorderSide(color: Colors.white))),child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset("assets/Resources/Images/logo.png",fit: BoxFit.contain,height:60.0,width: 60.0),
+                      )),
+                    ),
+                    Text('Hoornbeeck Rooster App 2.0',style: TextStyle(color: Colors.white),),
+
+                  ],
+                ),
                 decoration: BoxDecoration(
-                  color: AppColors.primaryColor,
+                  color: AppColors.primaryColorDark,
                 ),
               ),
               ListTile(
