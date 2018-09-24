@@ -12,7 +12,8 @@ dependencies:
   pull_to_refresh: ^1.1.5
   intl: ^0.15.7
   url_launcher: ^3.0.3
-
+  cloud_firestore: ^0.8.0
+  firebase_database: ^1.0.4
 dev_dependencies:
   flutter_test:
     sdk: flutter

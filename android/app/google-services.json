@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "961547999715",
+    "firebase_url": "https://hoornbeeckapp.firebaseio.com",
+    "project_id": "hoornbeeckapp",
+    "storage_bucket": "hoornbeeckapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961547999715:android:db2f3348b60625dd",
+        "android_client_info": {
+          "package_name": "ml.korver.reindert.hoornbeeckroosterinfoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961547999715-5d5qu7n9tg6an8uc1cl603tr7goodmc3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAo6_wcqYtjYZezw5PbC_CuzdiwKROAfAU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

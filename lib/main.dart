@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:hoornbeeck_rooster_info_app/DAL/Database.dart';
 import 'package:hoornbeeck_rooster_info_app/DAL/UserPreferences.dart';
 import 'package:hoornbeeck_rooster_info_app/Resources/AppColors.dart';
 import 'package:hoornbeeck_rooster_info_app/Widgets/Main/MainWidget.dart';
@@ -23,14 +24,10 @@ class _StartPageState extends State<StartPage> {
           primaryColor: AppColors.primaryColor,
           primaryColorDark: AppColors.primaryColorDark,
           accentColor: AppColors.accentColor,
-          textTheme: Theme
-              .of(context)
-              .textTheme
-              .apply(
-            bodyColor: Colors.white,
-            displayColor: Colors.white,
-          )
-      ),
+          textTheme: Theme.of(context).textTheme.apply(
+                bodyColor: Colors.white,
+                displayColor: Colors.white,
+              )),
       home: HomePage(),
     );
   }
@@ -43,13 +40,22 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Widget startWidget = StartWidget();
-  Widget tempWidget = SetupWidget(isFirstPage: true,);
+  Widget tempWidget = SetupWidget(
+    isFirstPage: true,
+  );
+  bool isFirstStart;
 
   getStartWidget() async {
-    bool isFirstStart = await UserPreferences().isFirstStart();
-    tempWidget =
-    (isFirstStart) ? SetupWidget(isFirstPage: true,) : MainWidget();
+    isFirstStart = await UserPreferences().isFirstStart();
+    tempWidget = (isFirstStart)
+        ? SetupWidget(
+            isFirstPage: true,
+          )
+        : MainWidget();
     waitCompleted();
+    if (isFirstStart) {
+      Database();
+    }
   }
 
   waitCompleted() async {
@@ -67,12 +73,14 @@ class _HomePageState extends State<HomePage> {
       getStartWidget();
       firstLoad = false;
     }
-    return MaterialApp(theme: ThemeData(
-      primaryColor: AppColors.primaryColor,
-      primaryColorDark: AppColors.primaryColorDark,
-      accentColor: AppColors.accentColor,
-    ),
-        home: startWidget,
+
+    return MaterialApp(
+      theme: ThemeData(
+        primaryColor: AppColors.primaryColor,
+        primaryColorDark: AppColors.primaryColorDark,
+        accentColor: AppColors.accentColor,
+      ),
+      home: startWidget,
     );
   }
 }
