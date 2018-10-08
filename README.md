@@ -7,7 +7,7 @@ Nothing of the schedules is owned by me, the app just uses the same API as the o
 ### Possibilities
 - When the app is online it saves the schedule locally, so the schedule can be accessed offline
 - Save multiple schedules of different classes, groups or teachers
-- View the schedule for 10 days
+- Views the schedule for 10 days
 
 ## Made with Flutter
 
