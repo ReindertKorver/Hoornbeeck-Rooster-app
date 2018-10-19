@@ -20,7 +20,7 @@ class _ScheduleState extends State<Schedule> {
     if (mounted) {
       List<DayScheduleWidget>dayScheduleWidgetsTemp=List();
       for(var dag in schedule.dagen){
-        dayScheduleWidgetsTemp.add(DayScheduleWidget(dag: dag));
+        dayScheduleWidgetsTemp.add(DayScheduleWidget(dag.date,dag: dag));
      }
      setState(() {
        dayScheduleWidgets=dayScheduleWidgetsTemp;

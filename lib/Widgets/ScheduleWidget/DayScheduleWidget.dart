@@ -7,8 +7,9 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DayScheduleWidget extends StatefulWidget {
-  DayScheduleWidget({@required this.dag});
+  DayScheduleWidget(this.dateTime, {@required this.dag});
 
+  final String dateTime;
   final Dag dag;
 
   @override

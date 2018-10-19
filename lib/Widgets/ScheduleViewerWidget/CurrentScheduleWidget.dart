@@ -46,8 +46,31 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
   @override
   void initState() {
     super.initState();
-
+    tabController.addListener(tabListener);
     getLessons();
+  }
+
+  void tabListener() {
+    int tabIndex = tabController.index;
+    DateTime newDate;
+    try {
+      //get the date from the widgets class if it exists and change the date button
+      DayScheduleWidget currentScheduleWidget = dayScheduleWidgets[tabIndex];
+      if(currentScheduleWidget!=null){
+        if(currentScheduleWidget.dateTime!=null){
+          var formatter = new DateFormat('dd-MM-yyyy');
+          newDate = formatter.parse(currentScheduleWidget.dateTime);
+        }
+      }
+    }
+    catch(Exception){
+      //widget isnt type of dayschedulewidget
+    }
+    if (newDate!=null&&mounted) {
+      setState(() {
+        currentDate = newDate;
+      });
+    }
   }
 
   void handleNewDate(date) {
@@ -115,7 +138,7 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
     if (currentSchedule != null) {
       List<DayScheduleWidget> dayScheduleWidgetsTemp = List();
       for (var dag in currentSchedule.dagen) {
-        dayScheduleWidgetsTemp.add(DayScheduleWidget(dag: dag));
+        dayScheduleWidgetsTemp.add(DayScheduleWidget(dag.date, dag: dag));
       }
       if (mounted) {
         setState(() {
@@ -191,14 +214,13 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
             } else {
               DateTime datetimeTemp = datetime;
               DateTime newDate;
-              if(datetime.weekday==DateTime.saturday){
-                newDate=datetimeTemp.add(Duration(days: 2));
+              if (datetime.weekday == DateTime.saturday) {
+                newDate = datetimeTemp.add(Duration(days: 2));
                 setTabViewerToDate(newDate);
-              }else if(datetime.weekday==DateTime.sunday){
-                newDate=datetimeTemp.add(Duration(days: 1));
+              } else if (datetime.weekday == DateTime.sunday) {
+                newDate = datetimeTemp.add(Duration(days: 1));
                 setTabViewerToDate(newDate);
               }
-
             }
           }
         } catch (Exception) {}

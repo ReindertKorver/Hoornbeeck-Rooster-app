@@ -24,10 +24,7 @@ class _StartPageState extends State<StartPage> {
           primaryColor: AppColors.primaryColor,
           primaryColorDark: AppColors.primaryColorDark,
           accentColor: AppColors.accentColor,
-          textTheme: Theme.of(context).textTheme.apply(
-                bodyColor: Colors.white,
-                displayColor: Colors.white,
-              )),
+         ),
       home: HomePage(),
     );
   }
