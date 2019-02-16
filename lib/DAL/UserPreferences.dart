@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:ui';
+import 'package:flutter/material.dart';
 import 'package:hoornbeeck_rooster_info_app/BLL/ScheduleData.dart';
 import 'package:hoornbeeck_rooster_info_app/Entities/Rooster.dart';
 import 'package:intl/intl.dart';
@@ -11,9 +13,29 @@ class UserPreferences {
   String CLASSLIST = "CLASSLIST";
   String CURRENTCLASS = "CURRENTCLASS";
   String LOCALSCHEDULES = "LOCALSCHEDULES";
+  String COLORS = "COLORS";
 
   _initializeUserPreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
+  }
+
+  setColors(List<Color> colors) async {
+    List<String> colorStrings = [];
+    colors.forEach((c) => colorStrings.add(c.value.toString()));
+    await _initializeUserPreferences();
+    sharedPreferences.setStringList(COLORS, colorStrings);
+  }
+
+  getColors() async {
+    await _initializeUserPreferences();
+    List<String> list = sharedPreferences.getStringList(COLORS);
+    if (list != null) {
+      List<Color> colors = [];
+      list.forEach((c) => colors.add(Color(int.parse(c))));
+      return colors;
+    } else {
+      return null;
+    }
   }
 
   Future<bool> isFirstStart() async {
@@ -40,8 +62,8 @@ class UserPreferences {
     try {
       List<String> list = sharedPreferences.getStringList(CLASSLIST);
       if (list != null) {
-        for(var item in list){
-          if(item==classCode){
+        for (var item in list) {
+          if (item == classCode) {
             return "Deze code is al eens geselecteerd";
           }
         }
@@ -168,7 +190,6 @@ class UserPreferences {
       }
 
       sharedPreferences.setStringList(LOCALSCHEDULES, schedules);
-
     } catch (Exception) {
       return null;
     }
@@ -194,10 +215,10 @@ class UserPreferences {
           print(Exception);
         }
       }
-      if (finalMap != null&&mapIndex!=null) {
+      if (finalMap != null && mapIndex != null) {
         OldScheduleResult oldScheduleResult = OldScheduleResult();
-        oldScheduleResult.map=finalMap;
-        oldScheduleResult.index=mapIndex;
+        oldScheduleResult.map = finalMap;
+        oldScheduleResult.index = mapIndex;
         return oldScheduleResult;
       } else {
         return null;

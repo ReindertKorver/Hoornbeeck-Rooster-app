@@ -20,6 +20,7 @@ class CurrentScheduleWidget extends StatefulWidget {
 }
 
 class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
+  var refreshKey = GlobalKey<RefreshIndicatorState>();
   TabController tabController =
       TabController(length: 10, vsync: AnimatedListState());
   DateTime currentDate = DateTime.now();
@@ -47,7 +48,7 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
   void initState() {
     super.initState();
     tabController.addListener(tabListener);
-    getLessons();
+    getLessons(false);
   }
 
   void tabListener() {
@@ -56,17 +57,16 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
     try {
       //get the date from the widgets class if it exists and change the date button
       DayScheduleWidget currentScheduleWidget = dayScheduleWidgets[tabIndex];
-      if(currentScheduleWidget!=null){
-        if(currentScheduleWidget.dateTime!=null){
+      if (currentScheduleWidget != null) {
+        if (currentScheduleWidget.dateTime != null) {
           var formatter = new DateFormat('dd-MM-yyyy');
           newDate = formatter.parse(currentScheduleWidget.dateTime);
         }
       }
-    }
-    catch(Exception){
+    } catch (Exception) {
       //widget isnt type of dayschedulewidget
     }
-    if (newDate!=null&&mounted) {
+    if (newDate != null && mounted) {
       setState(() {
         currentDate = newDate;
       });
@@ -77,9 +77,14 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
     print(date);
   }
 
-  getLessons() async {
+  Future<Null> refresher()async {
+    await getLessons(true);
+    await Future.delayed(Duration(milliseconds: 200));
+  }
+
+  Future<Null> getLessons(bool getOnline) async {
     String lesson = await UserPreferences().getCurrentLesson();
-    var result = await ScheduleData().getSchedule(lesson);
+    var result = await ScheduleData().getSchedule(lesson,getOnline);
     Rooster rooster;
     if (result is Rooster) {
       rooster = result;
@@ -109,10 +114,12 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
 
   onTimeOut() {
     if (errorMessage != null) {
-      Widget widget = Center(
-        child: Text(
-          errorMessage,
-          textAlign: TextAlign.center,
+      Widget widget = Container(
+        color: AppColors.foregroundColor,
+        child: Center(
+          child: Text(errorMessage,
+              textAlign: TextAlign.center,
+              style: TextStyle(color: AppColors.primaryTextColor)),
         ),
       );
       if (mounted) {
@@ -138,7 +145,8 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
     if (currentSchedule != null) {
       List<DayScheduleWidget> dayScheduleWidgetsTemp = List();
       for (var dag in currentSchedule.dagen) {
-        dayScheduleWidgetsTemp.add(DayScheduleWidget(dag.date, dag: dag));
+        dayScheduleWidgetsTemp
+            .add(DayScheduleWidget(dag.date, dag: dag, onRefresh: refresher, refreshKey: refreshKey,));
       }
       if (mounted) {
         setState(() {
@@ -187,7 +195,8 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
               //The date param is before the first date in the current schedule
               final snackBar = SnackBar(
                 content: Text(
-                    'Geen rooster gevonden misschien ben je vrij of is het rooster niet beschikbaar, ga maar uit van het laatste'),
+                    'Geen rooster gevonden misschien ben je vrij of is het rooster niet beschikbaar, ga maar uit van het laatste',
+                    style: TextStyle(color: AppColors.primaryTextColor)),
                 action: SnackBarAction(
                   label: 'Verbergen',
                   onPressed: () {
@@ -244,14 +253,15 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+
       child: Column(
         children: <Widget>[
           Row(
             children: <Widget>[
               IconButton(
-                splashColor: AppColors.accentColor,
                 icon: Icon(
                   Icons.arrow_left,
+                  color: AppColors.primaryTextColor,
                 ),
                 onPressed: () {
                   DateTime tempdate = currentDate;
@@ -277,8 +287,9 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
                 },
                 child: Row(
                   children: <Widget>[
-                    Icon(Icons.today),
-                    Text("Datum: " + formatter.format(currentDate) ?? ""),
+                    Icon(Icons.today, color: AppColors.primaryTextColor),
+                    Text("Datum: " + formatter.format(currentDate) ?? "",
+                        style: TextStyle(color: AppColors.primaryTextColor)),
                   ],
                 ),
               ),
@@ -286,10 +297,8 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
                 child: Container(),
               ),
               IconButton(
-                splashColor: AppColors.accentColor,
-                icon: Icon(
-                  Icons.arrow_right,
-                ),
+                icon:
+                    Icon(Icons.arrow_right, color: AppColors.primaryTextColor),
                 onPressed: () {
                   DateTime tempdate = currentDate;
                   DateTime date;

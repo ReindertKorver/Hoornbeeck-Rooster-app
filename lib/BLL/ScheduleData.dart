@@ -16,43 +16,39 @@ class ScheduleData {
   static DateTime lastUpdate;
   static DateFormat lastUpdateFormatter = DateFormat("dd/MM/yyyy HH:mm");
 
-  Future<dynamic> getSchedule(String value) async {
-    bool hasConnection = await InternetConnection.checkConnection();
-    if (hasConnection) {
-      var result = await _getOnlineSchedule(value);
-      if (result != null&&result.runtimeType ==String ) {
-        var date = DateTime.now();
-
-        Rooster rooster = await LessonsLogic().getLessonsFromJsonString(result);
-        if (rooster != null) {
-          UserPreferences().setLocalSchedule(result, value, date);
-          ScheduleData.lastUpdate=DateTime.now();
-          return rooster;
-        }
-        else{
-          //online and can get a result from api but cant convert api result to object
-          return null;
-        }
-      }
-      else{
-        //online but cant get a result from api
-        return result;
-      }
+  Future<dynamic> getSchedule(String value, bool getOnline) async {
+    var realConnection = await InternetConnection.checkConnection();
+    if (getOnline && realConnection) {
+      //if request is online and internet works
+      return await _getOnlineSchedule(value);
     } else {
       var result = await _getLocalSchedule(value);
-      if (result != null&&result.runtimeType !=List) {
-        //not online but schedule is found in local data
-        Rooster rooster = await LessonsLogic().getLessonsFromJsonString(result);
-        if (rooster != null) {
-          return rooster;
+      if (result != null && result.runtimeType != List) {
+        try {
+          //not online but schedule is found in local data
+          Rooster rooster =
+              await LessonsLogic().getLessonsFromJsonString(result);
+          if (rooster != null) {
+            return rooster;
+          } else {
+            //result couldn't be parsed
+            return null;
+          }
+        } catch (e) {
+          var realConnection = await InternetConnection.checkConnection();
+          if (realConnection) {
+            return await _getOnlineSchedule(value);
+          } else {
+            //Local schedule went wrong and the online schedule cant be accessed
+          }
         }
-        else{
-          //offline and can get a result from local data but cant convert local data to object
-          return null;
+      } else {
+        var realConnection = await InternetConnection.checkConnection();
+        if (realConnection) {
+          return await _getOnlineSchedule(value);
+        } else {
+          //Local schedule went wrong and the online schedule cant be accessed
         }
-      }else{
-        //not online and the schedule isn't found in local data
-        return result;
       }
     }
   }
@@ -62,6 +58,22 @@ class ScheduleData {
   }
 
   _getOnlineSchedule(String value) async {
-    return await GetWeekScheduleAPIConnection().getByCode(value);
+    var result = await GetWeekScheduleAPIConnection().getByCode(value);
+    if (result != null && result.runtimeType == String) {
+      var date = DateTime.now();
+
+      Rooster rooster = await LessonsLogic().getLessonsFromJsonString(result);
+      if (rooster != null) {
+        UserPreferences().setLocalSchedule(result, value, date);
+        ScheduleData.lastUpdate = DateTime.now();
+        return rooster;
+      } else {
+        //online and can get a result from api but cant convert api result to object
+        return null;
+      }
+    } else {
+      //online but cant get a result from api
+      return result;
+    }
   }
 }

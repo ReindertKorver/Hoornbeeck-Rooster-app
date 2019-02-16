@@ -7,13 +7,17 @@ import 'package:hoornbeeck_rooster_info_app/Widgets/Main/MainWidget.dart';
 
 class SetupWidget extends StatefulWidget {
   SetupWidget({@required this.isFirstPage});
-final bool isFirstPage;
+
+  final bool isFirstPage;
+
   @override
-  _SetupWidgetState createState() => _SetupWidgetState(isFirstPage:isFirstPage );
+  _SetupWidgetState createState() =>
+      _SetupWidgetState(isFirstPage: isFirstPage);
 }
 
 class _SetupWidgetState extends State<SetupWidget> {
   _SetupWidgetState({this.isFirstPage});
+
   bool isFirstPage;
   String searchValue;
   TextEditingController searchController = TextEditingController();
@@ -24,7 +28,8 @@ class _SetupWidgetState extends State<SetupWidget> {
     Center(
         child: Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Text("Typ een zoekterm om te zoeken"),
+      child: Text("Typ een zoekterm om te zoeken",
+          style: TextStyle(color: AppColors.primaryTextColor)),
     ))
   ];
 
@@ -72,7 +77,8 @@ class _SetupWidgetState extends State<SetupWidget> {
                 Center(
                     child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text("Er is een fout opgetreden, probeer opnieuw"),
+                  child: Text("Er is een fout opgetreden, probeer opnieuw",
+                      style: TextStyle(color: AppColors.primaryTextColor)),
                 ))
               ];
         });
@@ -84,17 +90,19 @@ class _SetupWidgetState extends State<SetupWidget> {
                 Center(
                     child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text("Kan gezochte niet vinden"),
+                  child: Text("Kan gezochte niet vinden",
+                      style: TextStyle(color: AppColors.primaryTextColor)),
                 ))
               ];
       });
     }
     print("changed");
   }
-goBack(){
-  Navigator.pop(context);
 
-}
+  goBack() {
+    Navigator.pop(context);
+  }
+
   acceptCode() async {
     var result = await UserPreferences().addClass(selectedItem);
     if (result == null) {
@@ -102,127 +110,132 @@ goBack(){
         context,
         MaterialPageRoute(builder: (context) => MainWidget()),
       );
-    }
-    else{
+    } else {
 //      Scaffold.of(context).showSnackBar(new SnackBar(
 //        content: new Text(result),
 //        action: SnackBarAction(label: "Verbergen", onPressed: (){}),
 //      ));
       setState(() {
-        searchResultList =
-        [
+        searchResultList = [
           Center(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(result),
-              ))
+            padding: const EdgeInsets.all(8.0),
+            child: Text(result,
+                style: TextStyle(color: AppColors.primaryTextColor)),
+          ))
         ];
       });
-
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primaryColor,
+      backgroundColor: AppColors.backgroundColor,
       body: Container(
         child: Center(
           child: Column(
             children: <Widget>[
-
               Padding(
-                padding: const EdgeInsets.only(top: 60.0),
+                padding: const EdgeInsets.only(top: 60.0,bottom: 30.0),
                 child: Text(
-                  "Zoek hieronder een klas/groep of docent code",textAlign: TextAlign.center,
+                  "Zoek hieronder een klas/groep of docent code",
+                  textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.white,
-                      letterSpacing: 1.0,),
-                ),
-              ),
-              Form(
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 32.0, right: 32.0, top: 32.0),
-                      child: Theme(
-                        data: Theme.of(context).copyWith(
-                              primaryColor: Colors.white,
-                            ),
-                        child: TextFormField(
-                          controller: searchController,
-                          autofocus: false,
-                          focusNode: searchFocus,
-                          decoration: InputDecoration(
-                            labelText: "Zoeken",
-                            prefixIcon: Icon(
-                              Icons.search,
-                            ),
-                            filled: true,
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(25.0)),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.normal,
+                    color: AppColors.backgroundTextColor,
+                    letterSpacing: 1.0,
+                  ),
                 ),
               ),
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 32.0, right: 32.0, top: 8.0, bottom: 0.0),
-                  child: Container(
-
-                      child: Padding(
-                        padding: const EdgeInsets.all(1.0),
-                        child: Container(
-                          child: ListView(
-                              shrinkWrap: true,
-                              padding: EdgeInsets.all(0.0),
-                              children: searchResultList),
+                child: Card(
+                  color: AppColors.foregroundColor,
+                  child: Column(
+                    children: <Widget>[
+                      Form(
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 32.0, right: 32.0, top: 32.0),
+                              child: Theme(
+                                data: Theme.of(context).copyWith(
+                                  primaryColor: AppColors.actionColor,
+                                ),
+                                child: TextFormField(
+                                  controller: searchController,
+                                  autofocus: false,
+                                  focusNode: searchFocus,
+                                  decoration: InputDecoration(
+                                    labelText: "Zoeken",
+                                    prefixIcon: Icon(
+                                      Icons.search,
+                                    ),
+                                    filled: true,
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(25.0)),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      )),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 32.0, right: 32.0, top: 8.0, bottom: 0.0),
+                          child: Container(
+                              child: Padding(
+                            padding: const EdgeInsets.all(1.0),
+                            child: Container(
+                              child: ListView(
+                                  shrinkWrap: true,
+                                  padding: EdgeInsets.all(0.0),
+                                  children: searchResultList),
+                            ),
+                          )),
+                        ),
+                      ), ButtonBar(
+                        alignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          (!isFirstPage)
+                              ? RawMaterialButton(
+                            onPressed: () {
+                              //Todo: add error catching and show the message
+                              goBack();
+                            },
+                            child: Text("Terug"),
+                            fillColor: AppColors.actionColor,
+                            textStyle:
+                            TextStyle(color: AppColors.actionTextColor),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25.0)),
+                          )
+                              : Container(),
+                          Text(selectedItem ?? "Geen geselecteerd"),
+                          RawMaterialButton(
+                            onPressed: () {
+                              if (selectedItem != null) {
+                                acceptCode();
+                              } else {}
+                            },
+                            child: Text("Bevestigen"),
+                            fillColor: AppColors.actionColor,
+                            textStyle: TextStyle(color: AppColors.actionTextColor),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25.0)),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              ButtonBar(
-                alignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  (!isFirstPage)?RawMaterialButton(
-                    onPressed: () {
-                      //Todo: add error catching and show the message
-                      goBack();
-                    },
-                    child: Text("Terug"),
-                    fillColor: Colors.white,
-                    textStyle: TextStyle(color: AppColors.primaryColor),
-                    splashColor: AppColors.primaryColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25.0)),
-                  ):Container(),
-                  Text(selectedItem ?? "Geen geselecteerd"),
-                  RawMaterialButton(
-                    onPressed: () {
-                      if(selectedItem!=null)
-                        {acceptCode();}
-                        else{
 
-                      }
-
-                    },
-                    child: Text("Bevestigen"),
-                    fillColor: Colors.white,
-                    textStyle: TextStyle(color: AppColors.primaryColor),
-                    splashColor: AppColors.primaryColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25.0)),
-                  )
-
-                ],
-              ),
             ],
           ),
         ),

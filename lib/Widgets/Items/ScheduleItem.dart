@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hoornbeeck_rooster_info_app/Resources/AppColors.dart';
 import 'package:hoornbeeck_rooster_info_app/Widgets/Items/SubjectScheduleItem.dart';
 
 class ScheduleItem extends StatefulWidget {
@@ -19,7 +20,8 @@ class _ScheduleItemState extends State<ScheduleItem> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 "Maandag",
-                textAlign: TextAlign.left,
+                textAlign: TextAlign.left
+                  ,style: TextStyle(color: AppColors.primaryTextColor)
               ),
             ),
             SubjectScheduleItem(),

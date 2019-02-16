@@ -15,17 +15,14 @@ class _ListItemState extends State<ListItem> {
   String title;
   String subTitle;
   Function onTap;
-  Color color=AppColors.primaryColor;
   @override
   Widget build(BuildContext context) {
     return ListTile(
       onTap: (){
         onTap();
       },
-
-
-      subtitle: Text(subTitle),
-      title: Text(title),
+      subtitle: Text(subTitle,style: TextStyle(color: AppColors.secondaryTextColor)),
+      title: Text(title,style: TextStyle(color: AppColors.primaryTextColor)),
     );
   }
 }
