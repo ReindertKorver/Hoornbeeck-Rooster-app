@@ -47,15 +47,16 @@ class _InfoState extends State<Info> {
     return MaterialApp(
       title: "Info",
       theme: ThemeData(
-        primaryColorDark: AppColors.primaryColorDark,
-        primaryColor: AppColors.primaryColor,
-        accentColor: AppColors.accentColor,
+        primaryColor: AppColors.backgroundColor,
+        primaryColorDark: AppColors.actionColor,
+        accentColor: AppColors.actionColor,
+        textSelectionColor: AppColors.actionColor,
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Info"),
+          title: Text("Info",style: TextStyle(color: AppColors.backgroundTextColor)),
           leading: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: Icon(Icons.arrow_back,color: AppColors.backgroundTextColor,),
               onPressed: () {
                 Navigator.of(context).pop();
               }),
@@ -68,20 +69,20 @@ class _InfoState extends State<Info> {
                 child: ListTile(
                   title: Padding(
                     padding: const EdgeInsets.only(top: 8.0),
-                    child: Text("Gemaakt door: Reindert Korver"),
+                    child: Text("Gemaakt door: Reindert Korver",style: TextStyle(color: AppColors.primaryTextColor)),
                   ),
-                  leading: Icon(Icons.person),
+                  leading: Icon(Icons.person,color: AppColors.primaryTextColor,),
                   subtitle: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
-                      Text("Vindt de code op Github"),
+                      Text("Vindt de code op Github",style: TextStyle(color: AppColors.primaryTextColor)),
                       FlatButton(
                           onPressed: () {
                             launchURL();
                           },
                           child: Text(
                             "GitHub.com/reindertkorver",
-                            style: TextStyle(color: AppColors.primaryColor),
+                            style: TextStyle(color: AppColors.actionColor),
                           ))
                     ],
                   ),
@@ -91,34 +92,34 @@ class _InfoState extends State<Info> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListTile(
-                  title: Text("Let op!"),
+                  title: Text("Let op!",style: TextStyle(color: AppColors.primaryTextColor)),
                 subtitle: Padding(
                   padding: const EdgeInsets.only(top: 8.0),
-                  child: Text("Ik wil niet verantwoordelijk zijn voor alle mensen die zogenaamd te laat komen door deze app, bij het gebruiken van de app accepteer je dat het mogelijk is dat er fouten kunnen zijn onstaan bij het ophalen van het rooster."),
+                  child: Text("Ik wil niet verantwoordelijk zijn voor alle mensen die zogenaamd te laat komen door deze app, bij het gebruiken van de app accepteer je dat het mogelijk is dat er fouten kunnen zijn onstaan bij het ophalen van het rooster.",style: TextStyle(color: AppColors.primaryTextColor)),
                 ),
               ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListTile(
-                  title: Text("Dit is niet de originele app"),
+                  title: Text("Dit is niet de originele app",style: TextStyle(color: AppColors.primaryTextColor)),
                   subtitle: Padding(
                     padding: const EdgeInsets.only(top: 8.0),
-                    child: Text("Al is dit niet de originele roosterinfo app, toch zal de informatie als het goed is grotendeels hetzelfde zijn, dit komt doordat allebij de app's dezelfde data gebruiken."),
+                    child: Text("Al is dit niet de originele roosterinfo app, toch zal de informatie als het goed is grotendeels hetzelfde zijn, dit komt doordat allebij de app's dezelfde data gebruiken.",style: TextStyle(color: AppColors.primaryTextColor)),
                   ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListTile(
-                  title: Text("Problemen"),
+                  title: Text("Problemen",style: TextStyle(color: AppColors.primaryTextColor)),
                   subtitle: Padding(
                     padding: const EdgeInsets.only(top: 8.0),
-                    child: Text("Wanneer er zich problemen voordoen binnen de app meld dit dan niet aan anderen dan mijzelf via ondestaande knop, zo kan het zo snel mogelijk opgelost worden. "),
+                    child: Text("Wanneer er zich problemen voordoen binnen de app meld dit dan niet aan anderen dan mijzelf via ondestaande knop, zo kan het zo snel mogelijk opgelost worden. ",style: TextStyle(color: AppColors.primaryTextColor)),
                   ),
                 ),
               ),
-              FlatButton(onPressed: (){launchEmail();}, child: Text("Probleem melden!", style: TextStyle(color: Colors.red),))
+              FlatButton(onPressed: (){launchEmail();}, child: Text("Probleem melden!", style: TextStyle(color: AppColors.warningColor),))
             ],
           ),
         ),

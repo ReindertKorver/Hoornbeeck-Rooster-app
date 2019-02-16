@@ -21,10 +21,11 @@ class _StartPageState extends State<StartPage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primaryColor: AppColors.primaryColor,
-          primaryColorDark: AppColors.primaryColorDark,
-          accentColor: AppColors.accentColor,
-         ),
+        primaryColor: AppColors.backgroundColor,
+        primaryColorDark: AppColors.backgroundColor,
+        accentColor: AppColors.actionColor,
+        textSelectionColor: AppColors.actionColor,
+      ),
       home: HomePage(),
     );
   }
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage> {
         ? SetupWidget(
             isFirstPage: true,
           )
-        : MainWidget();
+        : MainWidget(updateUI: updateUI,);
     waitCompleted();
     if (isFirstStart) {
       Database();
@@ -60,22 +61,51 @@ class _HomePageState extends State<HomePage> {
       startWidget = tempWidget;
     });
   }
+void updateUI(){
+    setState(() {
 
+    });
+}
   bool firstLoad = true;
 
   @override
-  Widget build(BuildContext context) {
-    if (firstLoad) {
-      print("Load setup");
-      getStartWidget();
-      firstLoad = false;
-    }
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadColors(firstLoad);
+  }
 
+  void loadColors(bool firstload) async {
+    if(firstload){
+    await AppColors.setColors([
+      AppColors.actionColor,
+      AppColors.actionTextColor,
+      AppColors.primaryTextColor,
+      AppColors.secondaryTextColor,
+      AppColors.backgroundColor,
+      AppColors.backgroundTextColor,
+      AppColors.foregroundColor,
+      AppColors.warningColor,
+    ]);
+    print("Load setup");
+    getStartWidget();
+    firstLoad = false;
+    }
+    else{
+
+      AppColors.getColors();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: AppColors.primaryColor,
-        primaryColorDark: AppColors.primaryColorDark,
-        accentColor: AppColors.accentColor,
+        primaryColor: AppColors.backgroundColor,
+        primaryColorDark: AppColors.backgroundColor,
+        accentColor: AppColors.actionColor,
+        textSelectionColor: AppColors.actionColor,
       ),
       home: startWidget,
     );

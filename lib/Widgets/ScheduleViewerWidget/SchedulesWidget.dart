@@ -49,8 +49,8 @@ class _SchedulesWidgetState extends State<SchedulesWidget> {
     if (listStrings[0] != "Fout") {
       for (var i = 0; i < listStrings.length; i++) {
         tempList.add(ListTile(
-          leading: Icon(Icons.assignment),
-          title: Text(listStrings[i] ?? ""),
+          leading: Icon(Icons.assignment,color: ((listStrings[i] ?? "") == currentScheduleCode)?AppColors.actionColor:AppColors.secondaryTextColor,),
+          title: Text(listStrings[i] ?? "",style: TextStyle(color:  ((listStrings[i] ?? "") == currentScheduleCode)?AppColors.actionColor:AppColors.secondaryTextColor,)),
           selected:
               ((listStrings[i] ?? "") == currentScheduleCode) ? true : false,
           onTap: () {
@@ -58,7 +58,7 @@ class _SchedulesWidgetState extends State<SchedulesWidget> {
             setState(() {});
           },
           trailing: IconButton(
-              icon: Icon(Icons.delete),
+              icon: Icon(Icons.delete,color: ((listStrings[i] ?? "") == currentScheduleCode)?AppColors.actionColor:AppColors.secondaryTextColor,),
               onPressed: () {
                 deleteItem(i);
               }),
@@ -66,8 +66,8 @@ class _SchedulesWidgetState extends State<SchedulesWidget> {
       }
     } else {
       tempList.add(ListTile(
-        title: Text(listStrings[0] ?? ""),
-        subtitle: Text(listStrings[1] ?? ""),
+        title: Text(listStrings[0] ?? "",style: TextStyle(color: AppColors.primaryTextColor)),
+        subtitle: Text(listStrings[1] ?? "",style: TextStyle(color: AppColors.secondaryTextColor)),
         selected: false,
         onTap: () {},
       ));
@@ -84,7 +84,7 @@ class _SchedulesWidgetState extends State<SchedulesWidget> {
         "Kies een rooster om te bekijken",
         textAlign: TextAlign.center,
         style: TextStyle(
-            fontWeight: FontWeight.bold, color: AppColors.primaryColor),
+            fontWeight: FontWeight.bold, color: AppColors.actionColor),
       ),
     ),
   );

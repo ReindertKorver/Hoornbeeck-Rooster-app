@@ -17,27 +17,29 @@ class _LessonScheduleWidgetState extends State<LessonScheduleWidget> {
 
   Les les;
   TextStyle style =
-  TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.bold);
+      TextStyle(color: AppColors.actionColor, fontWeight: FontWeight.bold);
   TextStyle changedStyle =
-  TextStyle(color: Colors.orange, fontWeight: FontWeight.bold);
-  TextStyle cancelledStyle =
-  TextStyle(color: Colors.red, fontWeight: FontWeight.bold,decoration: TextDecoration.lineThrough);
-@override
+      TextStyle(color: Colors.orange, fontWeight: FontWeight.bold);
+  TextStyle cancelledStyle = TextStyle(
+      color: Colors.red,
+      fontWeight: FontWeight.bold,
+      decoration: TextDecoration.lineThrough);
+
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    if(les.type=="vervallen")
-      {
-        setState(() {
-          style=cancelledStyle;
-        });
-      }
-      else if(les.type=="gewijzigd"){
+    if (les.type == "vervallen") {
       setState(() {
-        style=changedStyle;
+        style = cancelledStyle;
+      });
+    } else if (les.type == "gewijzigd") {
+      setState(() {
+        style = changedStyle;
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -49,18 +51,28 @@ class _LessonScheduleWidgetState extends State<LessonScheduleWidget> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              (les.vak != null&&les.vak!="") ? Row(
-                children: <Widget>[
-                  Text("Vak: "),
-                  Text(les.vak,style: style,),
-                ],
-              ): Text("Vak: geen"),
-              (les.docent != null &&les.docent!="") ? Row(
-                children: <Widget>[
-                  Text("Docent: "),
-                  Text(les.docent,style: style,),
-                ],
-              ):  Text("Docent: geen"),
+              (les.vak != null && les.vak != "")
+                  ? Row(
+                      children: <Widget>[
+                        Text("Vak: ",style: TextStyle(color: AppColors.primaryTextColor)),
+                        Text(
+                          les.vak,
+                          style: style,
+                        ),
+                      ],
+                    )
+                  : Text("Vak: geen",style: TextStyle(color: AppColors.primaryTextColor)),
+              (les.docent != null && les.docent != "")
+                  ? Row(
+                      children: <Widget>[
+                        Text("Docent: ",style: TextStyle(color: AppColors.primaryTextColor)),
+                        Text(
+                          les.docent,
+                          style: style,
+                        ),
+                      ],
+                    )
+                  : Text("Docent: geen",style: TextStyle(color: AppColors.primaryTextColor)),
             ],
           ),
         ),
@@ -69,21 +81,21 @@ class _LessonScheduleWidgetState extends State<LessonScheduleWidget> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              (les.lokaal != null&&les.lokaal!="")
+              (les.lokaal != null && les.lokaal != "")
                   ? Row(
                       children: <Widget>[
-                        Text("Lokaal: "),
+                        Text("Lokaal: ",style: TextStyle(color: AppColors.primaryTextColor)),
                         Text(
                           les.lokaal,
                           style: style,
                         ),
                       ],
                     )
-                  :  Text("Lokaal: geen"),
-              (les.groep != null&&les.groep!="")
+                  : Text("Lokaal: geen",style: TextStyle(color: AppColors.primaryTextColor)),
+              (les.groep != null && les.groep != "")
                   ? Row(
                       children: <Widget>[
-                        Text("Groep: "),
+                        Text("Groep: ",style: TextStyle(color: AppColors.primaryTextColor)),
                         Text(
                           les.groep +
                               ((les.extra != null) ? " " + les.extra : ""),

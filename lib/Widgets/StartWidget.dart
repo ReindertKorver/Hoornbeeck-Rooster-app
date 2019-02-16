@@ -20,16 +20,16 @@ class _StartWidgetState extends State<StartWidget> {
       DeviceOrientation.portraitDown,
     ]);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         elevation: 0.0,
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor:AppColors.backgroundColor,
         title: Text(
           "Hoornbeeck rooster",
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: AppColors.primaryColor,
+              color: AppColors.backgroundTextColor,
               fontSize: 30.0,
               fontWeight: FontWeight.bold),
         ),

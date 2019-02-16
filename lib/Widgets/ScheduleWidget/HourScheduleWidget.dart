@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hoornbeeck_rooster_info_app/Entities/Uur.dart';
+import 'package:hoornbeeck_rooster_info_app/Resources/AppColors.dart';
 import 'package:hoornbeeck_rooster_info_app/Widgets/ScheduleWidget/LessonScheduleWidget.dart';
 import 'package:intl/intl.dart';
 
@@ -39,6 +40,7 @@ class _HourScheduleWidgetState extends State<HourScheduleWidget> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: AppColors.foregroundColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
@@ -46,7 +48,7 @@ class _HourScheduleWidgetState extends State<HourScheduleWidget> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("Uur "+uur.uur.toString()),
+                child: Text("Uur "+uur.uur.toString(),style: TextStyle(color: AppColors.primaryTextColor)),
               ),
               Expanded(child: Container(),),
               Padding(
@@ -55,11 +57,11 @@ class _HourScheduleWidgetState extends State<HourScheduleWidget> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
-                      child: Text(formatter.format(startTime)),
+                      child: Text(formatter.format(startTime),style: TextStyle(color: AppColors.primaryTextColor)),
                     ),
                     Padding(
                       padding: const  EdgeInsets.only(left: 8.0),
-                      child: Text(formatter.format(endTime)),
+                      child: Text(formatter.format(endTime),style: TextStyle(color: AppColors.primaryTextColor)),
                     ),
                   ],
                 ),
