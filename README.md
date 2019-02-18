@@ -4,7 +4,7 @@ This is an app that displays a schedule like [roosterinfo.nl](http://roosterinfo
 
 Nothing of the schedules is owned by me, the app just uses the same API as the original app.
 
-### Possibilities
+### Features
 - When the app is online it saves the schedule locally, so the schedule can be accessed offline
 - Save multiple schedules of different classes, groups or teachers
 - View the schedule for 10 days
