@@ -13,3 +13,6 @@ Nothing of the schedules is owned by me, the app just uses the same API as the o
 
 For information about Flutter, view their online
 [documentation](https://flutter.io/).
+
+## Improvements
+When I look back at this, there is much to improve. Lots of thing aren't really needed because there is an easier way to do it. Maybe I'll improve it in the future.
