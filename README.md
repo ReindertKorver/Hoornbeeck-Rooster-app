@@ -16,3 +16,4 @@ For information about Flutter, view their online
 
 ## Improvements
 When I look back at this, there is much to improve. Lots of thing aren't really needed because there is an easier way to do it. Maybe I'll improve it in the future.
+If you find something that could be improved, please add an Issue [here](https://github.com/ReindertKorver/Hoornbeeck-Rooster-app/issues).
