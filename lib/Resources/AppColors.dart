@@ -11,7 +11,30 @@ class AppColors {
   static Color foregroundColor = Colors.white;
   static Color warningColor = Colors.red;
 
-  static getColors() async{
+  static setDefaultColors() async {
+    actionColor = Color(0xFF127a7b);
+    actionTextColor = Colors.white;
+    primaryTextColor = Colors.black;
+    secondaryTextColor = Colors.grey[600];
+    backgroundColor = Color(0xFF127a7b);
+    backgroundTextColor = Colors.white;
+    foregroundColor = Colors.white;
+    warningColor = Colors.red;
+    var colors = [
+      actionColor = Color(0xFF127a7b),
+      actionTextColor = Colors.white,
+      primaryTextColor = Colors.black,
+      secondaryTextColor = Colors.grey[600],
+      backgroundColor = Color(0xFF127a7b),
+      backgroundTextColor = Colors.white,
+      foregroundColor = Colors.white,
+      warningColor = Colors.red,
+    ];
+    await setColors(colors);
+    return colors;
+  }
+
+  static getColors() async {
     try {
       List<Color> colorsFromUP = await UserPreferences().getColors();
       actionColor = colorsFromUP[0];
@@ -22,16 +45,8 @@ class AppColors {
       backgroundTextColor = colorsFromUP[5];
       foregroundColor = colorsFromUP[6];
       warningColor = colorsFromUP[7];
-
     } catch (e) {
-      actionColor = Color(0xFF1C9D9F);
-      actionTextColor = Color(0xFF1C9D9F);
-      primaryTextColor = Color(0xFF1C9D9F);
-      secondaryTextColor = Color(0xFF1C9D9F);
-      backgroundColor = Color(0xFF1C9D9F);
-      backgroundTextColor = Color(0xFF1C9D9F);
-      foregroundColor = Color(0xFF1C9D9F);
-      warningColor = Color(0xFF1C9D9F);
+      setDefaultColors();
     }
   }
 
