@@ -249,6 +249,9 @@ class _CurrentScheduleWidgetState extends State<CurrentScheduleWidget> {
       });
     }
   }
+  OnRefresh(){
+    setScheduleItems();
+  }
 
   @override
   Widget build(BuildContext context) {

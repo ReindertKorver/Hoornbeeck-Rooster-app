@@ -10,7 +10,8 @@ import 'package:hoornbeeck_rooster_info_app/Widgets/ScheduleViewerWidget/Current
 import 'package:hoornbeeck_rooster_info_app/Widgets/ScheduleViewerWidget/SchedulesWidget.dart';
 import 'package:hoornbeeck_rooster_info_app/Widgets/Settings.dart';
 import 'package:hoornbeeck_rooster_info_app/Widgets/Setup/SetupWidget.dart';
-
+import 'package:hoornbeeck_rooster_info_app/DAL/UserPreferences.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 class MainWidget extends StatefulWidget {
   MainWidget({this.updateUI});
   final VoidCallback updateUI;
@@ -19,6 +20,8 @@ class MainWidget extends StatefulWidget {
 }
 
 class _MainWidgetState extends State<MainWidget> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new 
+        GlobalKey<ScaffoldState>();
   Widget body = Container();
   String title = "Rooster";
   IconData icon = Icons.event;
@@ -26,15 +29,106 @@ class _MainWidgetState extends State<MainWidget> {
   Text latestUpdate = Text((ScheduleData.lastUpdate != null)
       ? ScheduleData.lastUpdateFormatter.format(ScheduleData.lastUpdate)
       : "geen");
+  // hieronder selecteerd hij welk screen hij laat zien. 0 = huidige rooster, 1 = je roosters
   List<Widget> screens = [CurrentScheduleWidget(), SchedulesWidget()];
   List<String> screenTitles = ["Rooster", "Roosters"];
   List<IconData> screenIcons = [Icons.event, Icons.event_note];
   StreamSubscription<ConnectivityResult> subscription;
   bool isConnected = true;
-  Widget connectionIcon = Icon(
-    Icons.signal_wifi_4_bar,
-    color: Colors.white,
+  Widget connectionIcon = IconButton(
+  icon: Icon(Icons.network_wifi),
+  tooltip: 'Verbonden met een netwerk!',
+  onPressed: () {
+    Fluttertoast.showToast(
+        msg: "Verbonden met een netwerk!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIos: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+
+  },
   );
+  List<String> roosters;
+  selectItem(i) async {
+    await UserPreferences().setCurrentLesson(i);
+    bottomSheetBuilder();
+  }
+  onRefresh(){
+    setScreen(0);
+  }
+  setScreen(int index) {
+    setState(() {
+      body = screens[index];
+      title = screenTitles[index];
+      icon = screenIcons[index];
+      currentIndex = index;
+      latestUpdate = Text(
+          (ScheduleData.lastUpdate != null)
+              ? ScheduleData.lastUpdateFormatter.format(ScheduleData.lastUpdate)
+              : "geen",
+          style: TextStyle(color: AppColors.secondaryTextColor));
+      
+    });
+  }
+
+  List<Widget> roostersBottomSheetItems = [];
+  bottomSheetBuilder() async {
+    roostersBottomSheetItems = [
+      ListTile( 
+          leading: Icon(Icons.edit),
+          title: Text('Wijzig roosters'),
+          onTap: () {
+            setScreen(1);
+            Navigator.pop(context);
+          }),
+      ListTile(
+          leading: Icon(Icons.add),
+          title: Text('Rooster Toevoegen'),
+          onTap: () {
+            setScreen(1);
+            Navigator.pop(context);
+          }),
+      Divider(),
+    ];
+
+    roosters = await UserPreferences().getClasses();
+
+    for (var item in roosters) {
+      roostersBottomSheetItems.add(ListTile(
+        title: Text(item),
+        onTap: () {
+        selectItem(item);
+         
+         
+         Navigator.pop(context);
+         
+         setScreen(1);
+         Future.delayed(const Duration(milliseconds: 50),() {
+          setScreen(0);
+         });
+         
+         
+        },
+      ));
+    }
+  }
+
+  roostersBottomSheet() {
+    print("object pressed");
+    showModalBottomSheet(
+        
+        context: context,
+        builder: (context) {
+          
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: roostersBottomSheetItems,
+          );
+        });
+  }
 
   @override
   void initState() {
@@ -45,6 +139,7 @@ class _MainWidgetState extends State<MainWidget> {
       onConnectionChangeEvent();
     });
     onConnectionChangeEvent();
+    bottomSheetBuilder();
   }
 
   onConnectionChangeEvent() async {
@@ -64,6 +159,7 @@ class _MainWidgetState extends State<MainWidget> {
           connectionIcon = Icon(
             Icons.signal_wifi_off,
             color: AppColors.warningColor,
+            
           );
         });
       }
@@ -98,22 +194,8 @@ class _MainWidgetState extends State<MainWidget> {
 
   @override
   Widget build(BuildContext context) {
-    setScreen(int index) {
-      setState(() {
-        body = screens[index];
-        title = screenTitles[index];
-        icon = screenIcons[index];
-        currentIndex = index;
-        latestUpdate = Text(
-            (ScheduleData.lastUpdate != null)
-                ? ScheduleData.lastUpdateFormatter
-                    .format(ScheduleData.lastUpdate)
-                : "geen",
-            style: TextStyle(color: AppColors.secondaryTextColor));
-      });
-    }
-
     return Scaffold(
+      key: _scaffoldKey,
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       floatingActionButton: (currentIndex == 1)
           ? Padding(
@@ -155,6 +237,7 @@ class _MainWidgetState extends State<MainWidget> {
               ),
             ),
           )),
+      
       bottomNavigationBar: Container(
         color: AppColors.backgroundColor,
         child: BottomAppBar(
@@ -162,7 +245,7 @@ class _MainWidgetState extends State<MainWidget> {
             shape: CircularNotchedRectangle(),
             child: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(
@@ -178,7 +261,7 @@ class _MainWidgetState extends State<MainWidget> {
                               color: (currentIndex == 0)
                                   ? AppColors.actionColor
                                   : Colors.grey[400],
-                              size: (currentIndex == 0) ? 35.0 : 25.0),
+                              size: 30.0),
                           Text(
                             "Rooster",
                             style: TextStyle(
@@ -206,8 +289,9 @@ class _MainWidgetState extends State<MainWidget> {
                             color: (currentIndex == 1)
                                 ? AppColors.actionColor
                                 : Colors.grey[400],
-                            size: (currentIndex == 1) ? 35.0 : 25.0,
+                            size: 30.0,
                           ),
+                          //
                           Text("Roosters",
                               style: TextStyle(
                                   color: (currentIndex == 1)
@@ -216,7 +300,7 @@ class _MainWidgetState extends State<MainWidget> {
                         ],
                       ),
                       onPressed: () {
-                        setScreen(1);
+                        roostersBottomSheet();
                       },
                     ),
                   ),
@@ -237,7 +321,8 @@ class _MainWidgetState extends State<MainWidget> {
         ],
       ),
       drawer: Drawer(
-        child: Container(color: AppColors.foregroundColor,
+        child: Container(
+          color: AppColors.foregroundColor,
           child: ListView(
             // Important: Remove any padding from the ListView.
             padding: EdgeInsets.zero,
@@ -254,8 +339,11 @@ class _MainWidgetState extends State<MainWidget> {
                                   side: BorderSide(color: Colors.white))),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Image.asset("assets/Resources/Images/logo.png",
-                                fit: BoxFit.contain, height: 60.0, width: 60.0),
+                            child: Image.asset(
+                                "assets/Resources/Images/logo.png",
+                                fit: BoxFit.contain,
+                                height: 60.0,
+                                width: 60.0),
                           )),
                     ),
                     Text(
@@ -333,7 +421,10 @@ class _MainWidgetState extends State<MainWidget> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Settings(updateUI: widget.updateUI,)),
+                    MaterialPageRoute(
+                        builder: (context) => Settings(
+                              updateUI: widget.updateUI,
+                            )),
                   );
                 },
               ),

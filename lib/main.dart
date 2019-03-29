@@ -1,7 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:hoornbeeck_rooster_info_app/DAL/Database.dart';
+//import 'package:hoornbeeck_rooster_info_app/DAL/Database.dart';
 import 'package:hoornbeeck_rooster_info_app/DAL/UserPreferences.dart';
 import 'package:hoornbeeck_rooster_info_app/Resources/AppColors.dart';
 import 'package:hoornbeeck_rooster_info_app/Widgets/Main/MainWidget.dart';
@@ -52,7 +50,7 @@ class _HomePageState extends State<HomePage> {
         : MainWidget(updateUI: updateUI,);
     waitCompleted();
     if (isFirstStart) {
-      Database();
+      //Database();
     }
   }
 
